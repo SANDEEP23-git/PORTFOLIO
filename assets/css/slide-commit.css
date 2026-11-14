@@ -1,0 +1,273 @@
+/* ==========================================================================
+   REACT BITS - SlideCommit Component Styles
+   Tailwind / Pure CSS Adaptive Implementation for Let's Connect Button
+   ========================================================================== */
+
+@keyframes sc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sc-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes sc-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-6px); }
+  30% { transform: translateX(6px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+}
+
+.sc-root {
+  --sc-track: #15171a;
+  --sc-ink: #d5fa01; /* Neon Lime Theme Color */
+  --sc-ok: #22c55e;
+  --sc-no: #e5484d;
+  --sc-on-ink: #111111;
+  --sc-on-ok: #ffffff;
+  --sc-on-no: #ffffff;
+  --sc-radius: 29px;
+  --sc-grip-r: 25px;
+  --sc-pad: 4px;
+  --sc-font: 16px;
+  
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 58px;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: inherit;
+  margin-top: 6px;
+}
+
+/* White Theme Adaptation */
+body.light .sc-root,
+[data-theme="light"] .sc-root {
+  --sc-track: #e9ecef;
+  --sc-ink: #111827;
+  --sc-on-ink: #ffffff;
+}
+
+.sc-root[data-disabled] {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.sc-track {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  cursor: grab;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: var(--sc-radius);
+  background: var(--sc-track);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  will-change: transform;
+}
+
+body.light .sc-track,
+[data-theme="light"] .sc-track {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.sc-root[data-held] .sc-track {
+  cursor: grabbing;
+}
+
+.sc-root[data-phase="pending"] .sc-track,
+.sc-root[data-phase="done"] .sc-track {
+  cursor: default;
+}
+
+.sc-root[data-phase="error"] .sc-track {
+  animation: sc-shake 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Track Center Label */
+.sc-track-label {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: var(--sc-font);
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.55);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+  will-change: opacity;
+}
+
+body.light .sc-track-label,
+[data-theme="light"] .sc-track-label {
+  color: rgba(17, 24, 39, 0.6);
+}
+
+.sc-label-text,
+.sc-error-text {
+  grid-area: 1 / 1;
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+
+.sc-error-text {
+  color: var(--sc-no);
+  opacity: 0;
+  filter: blur(2px);
+}
+
+.sc-root[data-phase="error"] .sc-label-text {
+  opacity: 0;
+  filter: blur(2px);
+}
+
+.sc-root[data-phase="error"] .sc-error-text {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Sliding Handle Capsule */
+.sc-capsule {
+  position: absolute;
+  top: var(--sc-pad);
+  left: var(--sc-pad);
+  height: calc(100% - var(--sc-pad) * 2);
+  width: calc(100% - var(--sc-pad) * 2);
+  outline: none;
+  background: var(--sc-ink);
+  color: var(--sc-on-ink);
+  border-radius: var(--sc-grip-r);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: background-color 220ms ease, color 220ms ease;
+  will-change: clip-path, transform;
+}
+
+.sc-capsule:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--sc-track), 0 0 0 3px var(--sc-ink);
+}
+
+.sc-root[data-phase="done"] .sc-capsule {
+  background: var(--sc-ink) !important; /* Keep signature neon lime on done */
+  color: var(--sc-on-ink) !important;
+  box-shadow: 0 0 24px rgba(213, 250, 1, 0.45);
+}
+
+.sc-root[data-phase="error"] .sc-capsule {
+  background: var(--sc-no) !important;
+  color: var(--sc-on-no) !important;
+}
+
+/* Inner Capsule Content */
+.sc-content {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* Arrow Handle Icon */
+.sc-icon-arrow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: var(--sc-font);
+  transition: filter 200ms ease;
+  will-change: opacity;
+}
+
+.sc-icon-arrow svg {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.sc-root[data-held] .sc-icon-arrow svg {
+  transform: translateX(2px) scale(1.05);
+}
+
+.sc-root[data-phase="pending"] .sc-icon-arrow,
+.sc-root[data-phase="done"] .sc-icon-arrow,
+.sc-root[data-phase="error"] .sc-icon-arrow {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Spinner */
+.sc-spinner-wrap {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+
+.sc-spinner {
+  animation: sc-spin 1s linear infinite;
+  animation-play-state: paused;
+}
+
+.sc-root[data-phase="pending"] .sc-spinner-wrap {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.sc-root[data-phase="pending"] .sc-spinner {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-spinner {
+    animation: sc-breathe 1.4s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  .sc-root[data-phase="pending"] .sc-spinner {
+    animation-play-state: running;
+  }
+}
+
+/* Done Checkmark & Label */
+.sc-icon-done {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 220ms ease, transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.sc-icon-done svg {
+  display: block;
+}
+
+.sc-root[data-phase="done"] .sc-icon-done {
+  opacity: 1;
+  transform: scale(1);
+}

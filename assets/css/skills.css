@@ -1,0 +1,1811 @@
+/* ==========================================================================
+   PREMIUM TECH STACK / SKILLS SECTION STYLES
+   Designed for Sandeep Patra Portfolio (White & Dark Theme Adaptive)
+   Features Interactive Cursor-Tracking Spotlight (Codexkaizen style)
+   ========================================================================== */
+
+:root {
+  --skills-bg: #FAFAFA;
+  --skills-card-bg: #FFFFFF;
+  --skills-card-border: #E5E7EB;
+  --skills-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --skills-title-color: #111827;
+  --skills-subtitle-color: #6B7280;
+  --skills-label-color: #F28C28;
+  --skills-card-title: #1F2937;
+  --skills-pill-bg: #F3F4F6;
+  --skills-pill-text: #4B5563;
+  --skills-pill-active-bg: #111827;
+  --skills-pill-active-text: #FFFFFF;
+}
+
+body.dark,
+body.dark-mode,
+[data-theme="dark"] {
+  --skills-bg: #080808;
+  --skills-card-bg: #101010;
+  --skills-card-border: #252525;
+  --skills-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --skills-title-color: #FFFFFF;
+  --skills-subtitle-color: #A1A1AA;
+  --skills-label-color: #F28C28;
+  --skills-card-title: #FFFFFF;
+  --skills-pill-bg: #1A1A1A;
+  --skills-pill-text: #A1A1AA;
+  --skills-pill-active-bg: #FFFFFF;
+  --skills-pill-active-text: #080808;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) {
+    --skills-bg: #080808;
+    --skills-card-bg: #101010;
+    --skills-card-border: #252525;
+    --skills-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --skills-title-color: #FFFFFF;
+    --skills-subtitle-color: #A1A1AA;
+    --skills-label-color: #F28C28;
+    --skills-card-title: #FFFFFF;
+    --skills-pill-bg: #1A1A1A;
+    --skills-pill-text: #A1A1AA;
+    --skills-pill-active-bg: #FFFFFF;
+    --skills-pill-active-text: #080808;
+  }
+}
+
+/* Section Wrapper */
+.skills-area {
+  background-color: var(--skills-bg);
+  padding-block: 110px 110px;
+  position: relative;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+.skills-area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--skills-card-border), transparent);
+}
+
+/* Header Typography */
+.skills-label {
+  color: var(--skills-label-color);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.skills-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--skills-label-color);
+  margin-bottom: 8px;
+}
+
+.skills-title {
+  color: var(--skills-title-color);
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.skills-subtitle {
+  color: var(--skills-subtitle-color);
+  font-size: 1.125rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Filter Pills */
+.skills-filter-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.skills-filter-btn {
+  background: var(--skills-pill-bg);
+  color: var(--skills-pill-text);
+  border: 1px solid var(--skills-card-border);
+  padding: 8px 20px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+.skills-filter-btn:hover {
+  transform: translateY(-2px);
+  color: var(--skills-title-color);
+  border-color: var(--skills-label-color);
+}
+
+.skills-filter-btn.active {
+  background: var(--skills-pill-active-bg);
+  color: var(--skills-pill-active-text);
+  border-color: var(--skills-pill-active-bg);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Grid Layout */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* Individual Tech Card (Semantic Clickable Anchor Element) */
+.tech-card {
+  background: var(--skills-card-bg);
+  border: 1px solid var(--skills-card-border);
+  border-radius: 16px;
+  min-height: 135px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--skills-card-shadow);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  isolation: isolate;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keyboard accessibility outline */
+.tech-card:focus-visible {
+  border-color: var(--brand-color, #F28C28);
+  box-shadow: 0 0 0 3px var(--brand-spotlight, rgba(237, 90, 47, 0.3));
+}
+
+/* ==========================================================================
+   DYNAMIC INTERACTIVE SPOTLIGHT EFFECT (Revolves with cursor inside card)
+   ========================================================================== */
+
+/* 1. Core Dynamic Radial Spotlight (Tracks cursor coordinates) */
+.tech-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    170px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--brand-spotlight, rgba(237, 90, 47, 0.32)) 0%,
+    var(--brand-spotlight-fade, rgba(237, 90, 47, 0.12)) 45%,
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 2. Soft Ambient Radial Wash (Diffuses across card floor) */
+.tech-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    270px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--brand-glow-ambient, rgba(237, 90, 47, 0.16)) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Card Icon */
+.tech-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.tech-icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Card Title */
+.tech-name {
+  color: var(--skills-card-title);
+  font-size: 0.925rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  transition: color 0.25s ease;
+}
+
+/* Card Hover Interactions */
+.tech-card:hover,
+.tech-card.spotlight-active {
+  transform: translateY(-5px);
+  border-color: var(--brand-border, rgba(237, 90, 47, 0.45));
+  box-shadow: 0 14px 28px -6px var(--brand-glow-shadow, rgba(0, 0, 0, 0.08)),
+              0 0 18px 2px var(--brand-glow-ambient, rgba(237, 90, 47, 0.15));
+}
+
+.tech-card:hover::before,
+.tech-card:hover::after,
+.tech-card.spotlight-active::before,
+.tech-card.spotlight-active::after {
+  opacity: 1;
+}
+
+.tech-card:hover .tech-icon,
+.tech-card.spotlight-active .tech-icon {
+  transform: translateY(-2px) scale(1.08);
+  filter: drop-shadow(0 4px 10px var(--brand-spotlight, rgba(237, 90, 47, 0.35)));
+}
+
+.tech-card:hover .tech-name,
+.tech-card.spotlight-active .tech-name {
+  color: var(--skills-title-color);
+}
+
+/* ==========================================================================
+   OFFICIAL BRAND PALETTES (Light & Dark Theme Adaptive)
+   ========================================================================== */
+
+/* 1. Python */
+.card-python {
+  --brand-color: #3776AB;
+  --brand-border: rgba(55, 118, 171, 0.45);
+  --brand-spotlight: rgba(55, 118, 171, 0.32);
+  --brand-spotlight-fade: rgba(255, 212, 59, 0.18);
+  --brand-glow-ambient: rgba(55, 118, 171, 0.15);
+  --brand-glow-shadow: rgba(55, 118, 171, 0.22);
+}
+body.dark .card-python,
+body.dark-mode .card-python,
+[data-theme="dark"] .card-python {
+  --brand-border: rgba(55, 118, 171, 0.55);
+  --brand-spotlight: rgba(55, 118, 171, 0.45);
+  --brand-spotlight-fade: rgba(255, 212, 59, 0.24);
+  --brand-glow-ambient: rgba(55, 118, 171, 0.24);
+  --brand-glow-shadow: rgba(55, 118, 171, 0.4);
+}
+
+/* 2. C */
+.card-c {
+  --brand-color: #00599C;
+  --brand-border: rgba(0, 89, 156, 0.45);
+  --brand-spotlight: rgba(0, 89, 156, 0.32);
+  --brand-spotlight-fade: rgba(0, 89, 156, 0.14);
+  --brand-glow-ambient: rgba(0, 89, 156, 0.15);
+  --brand-glow-shadow: rgba(0, 89, 156, 0.2);
+}
+body.dark .card-c,
+body.dark-mode .card-c,
+[data-theme="dark"] .card-c {
+  --brand-border: rgba(0, 89, 156, 0.55);
+  --brand-spotlight: rgba(0, 89, 156, 0.45);
+  --brand-spotlight-fade: rgba(0, 89, 156, 0.2);
+  --brand-glow-ambient: rgba(0, 89, 156, 0.22);
+  --brand-glow-shadow: rgba(0, 89, 156, 0.38);
+}
+
+/* 3. Java */
+.card-java {
+  --brand-color: #E76F00;
+  --brand-border: rgba(231, 111, 0, 0.45);
+  --brand-spotlight: rgba(231, 111, 0, 0.34);
+  --brand-spotlight-fade: rgba(83, 130, 161, 0.16);
+  --brand-glow-ambient: rgba(231, 111, 0, 0.15);
+  --brand-glow-shadow: rgba(231, 111, 0, 0.22);
+}
+body.dark .card-java,
+body.dark-mode .card-java,
+[data-theme="dark"] .card-java {
+  --brand-border: rgba(231, 111, 0, 0.55);
+  --brand-spotlight: rgba(231, 111, 0, 0.48);
+  --brand-spotlight-fade: rgba(83, 130, 161, 0.22);
+  --brand-glow-ambient: rgba(231, 111, 0, 0.25);
+  --brand-glow-shadow: rgba(231, 111, 0, 0.4);
+}
+
+/* 4. JavaScript */
+.card-js {
+  --brand-color: #EAB308;
+  --brand-border: rgba(234, 179, 8, 0.5);
+  --brand-spotlight: rgba(234, 179, 8, 0.35);
+  --brand-spotlight-fade: rgba(247, 223, 30, 0.16);
+  --brand-glow-ambient: rgba(234, 179, 8, 0.16);
+  --brand-glow-shadow: rgba(234, 179, 8, 0.25);
+}
+body.dark .card-js,
+body.dark-mode .card-js,
+[data-theme="dark"] .card-js {
+  --brand-border: rgba(247, 223, 30, 0.55);
+  --brand-spotlight: rgba(247, 223, 30, 0.46);
+  --brand-spotlight-fade: rgba(234, 179, 8, 0.24);
+  --brand-glow-ambient: rgba(247, 223, 30, 0.26);
+  --brand-glow-shadow: rgba(247, 223, 30, 0.42);
+}
+
+/* 5. HTML5 */
+.card-html5 {
+  --brand-color: #E34F26;
+  --brand-border: rgba(227, 79, 38, 0.45);
+  --brand-spotlight: rgba(227, 79, 38, 0.34);
+  --brand-spotlight-fade: rgba(239, 101, 42, 0.16);
+  --brand-glow-ambient: rgba(227, 79, 38, 0.15);
+  --brand-glow-shadow: rgba(227, 79, 38, 0.22);
+}
+body.dark .card-html5,
+body.dark-mode .card-html5,
+[data-theme="dark"] .card-html5 {
+  --brand-border: rgba(227, 79, 38, 0.55);
+  --brand-spotlight: rgba(227, 79, 38, 0.48);
+  --brand-spotlight-fade: rgba(239, 101, 42, 0.24);
+  --brand-glow-ambient: rgba(227, 79, 38, 0.25);
+  --brand-glow-shadow: rgba(227, 79, 38, 0.4);
+}
+
+/* 6. CSS3 */
+.card-css3 {
+  --brand-color: #1572B6;
+  --brand-border: rgba(21, 114, 182, 0.45);
+  --brand-spotlight: rgba(21, 114, 182, 0.34);
+  --brand-spotlight-fade: rgba(51, 169, 220, 0.16);
+  --brand-glow-ambient: rgba(21, 114, 182, 0.15);
+  --brand-glow-shadow: rgba(21, 114, 182, 0.22);
+}
+body.dark .card-css3,
+body.dark-mode .card-css3,
+[data-theme="dark"] .card-css3 {
+  --brand-border: rgba(21, 114, 182, 0.55);
+  --brand-spotlight: rgba(21, 114, 182, 0.48);
+  --brand-spotlight-fade: rgba(51, 169, 220, 0.24);
+  --brand-glow-ambient: rgba(21, 114, 182, 0.25);
+  --brand-glow-shadow: rgba(21, 114, 182, 0.4);
+}
+
+/* 7. React */
+.card-react {
+  --brand-color: #0891B2;
+  --brand-border: rgba(97, 218, 251, 0.6);
+  --brand-spotlight: rgba(97, 218, 251, 0.38);
+  --brand-spotlight-fade: rgba(6, 182, 212, 0.16);
+  --brand-glow-ambient: rgba(97, 218, 251, 0.2);
+  --brand-glow-shadow: rgba(8, 145, 178, 0.22);
+}
+body.dark .card-react,
+body.dark-mode .card-react,
+[data-theme="dark"] .card-react {
+  --brand-color: #61DAFB;
+  --brand-border: rgba(97, 218, 251, 0.65);
+  --brand-spotlight: rgba(97, 218, 251, 0.5);
+  --brand-spotlight-fade: rgba(97, 218, 251, 0.26);
+  --brand-glow-ambient: rgba(97, 218, 251, 0.28);
+  --brand-glow-shadow: rgba(97, 218, 251, 0.45);
+}
+
+/* 8. Responsive Design */
+.card-responsive {
+  --brand-color: #10B981;
+  --brand-border: rgba(16, 185, 129, 0.45);
+  --brand-spotlight: rgba(16, 185, 129, 0.32);
+  --brand-spotlight-fade: rgba(16, 185, 129, 0.14);
+  --brand-glow-ambient: rgba(16, 185, 129, 0.15);
+  --brand-glow-shadow: rgba(16, 185, 129, 0.22);
+}
+body.dark .card-responsive,
+body.dark-mode .card-responsive,
+[data-theme="dark"] .card-responsive {
+  --brand-border: rgba(16, 185, 129, 0.55);
+  --brand-spotlight: rgba(16, 185, 129, 0.46);
+  --brand-spotlight-fade: rgba(16, 185, 129, 0.22);
+  --brand-glow-ambient: rgba(16, 185, 129, 0.25);
+  --brand-glow-shadow: rgba(16, 185, 129, 0.4);
+}
+
+/* 9. FastAPI */
+.card-fastapi {
+  --brand-color: #009688;
+  --brand-border: rgba(0, 150, 136, 0.45);
+  --brand-spotlight: rgba(0, 150, 136, 0.32);
+  --brand-spotlight-fade: rgba(0, 150, 136, 0.14);
+  --brand-glow-ambient: rgba(0, 150, 136, 0.15);
+  --brand-glow-shadow: rgba(0, 150, 136, 0.22);
+}
+body.dark .card-fastapi,
+body.dark-mode .card-fastapi,
+[data-theme="dark"] .card-fastapi {
+  --brand-border: rgba(0, 150, 136, 0.55);
+  --brand-spotlight: rgba(0, 150, 136, 0.46);
+  --brand-spotlight-fade: rgba(0, 150, 136, 0.22);
+  --brand-glow-ambient: rgba(0, 150, 136, 0.25);
+  --brand-glow-shadow: rgba(0, 150, 136, 0.4);
+}
+
+/* 10. Node.js */
+.card-nodejs {
+  --brand-color: #5FA04E;
+  --brand-border: rgba(95, 160, 78, 0.45);
+  --brand-spotlight: rgba(95, 160, 78, 0.34);
+  --brand-spotlight-fade: rgba(95, 160, 78, 0.14);
+  --brand-glow-ambient: rgba(95, 160, 78, 0.15);
+  --brand-glow-shadow: rgba(95, 160, 78, 0.22);
+}
+body.dark .card-nodejs,
+body.dark-mode .card-nodejs,
+[data-theme="dark"] .card-nodejs {
+  --brand-border: rgba(95, 160, 78, 0.55);
+  --brand-spotlight: rgba(95, 160, 78, 0.46);
+  --brand-spotlight-fade: rgba(95, 160, 78, 0.22);
+  --brand-glow-ambient: rgba(95, 160, 78, 0.25);
+  --brand-glow-shadow: rgba(95, 160, 78, 0.4);
+}
+
+/* 11. MongoDB */
+.card-mongodb {
+  --brand-color: #47A248;
+  --brand-border: rgba(71, 162, 72, 0.45);
+  --brand-spotlight: rgba(71, 162, 72, 0.34);
+  --brand-spotlight-fade: rgba(71, 162, 72, 0.14);
+  --brand-glow-ambient: rgba(71, 162, 72, 0.15);
+  --brand-glow-shadow: rgba(71, 162, 72, 0.22);
+}
+body.dark .card-mongodb,
+body.dark-mode .card-mongodb,
+[data-theme="dark"] .card-mongodb {
+  --brand-border: rgba(71, 162, 72, 0.55);
+  --brand-spotlight: rgba(71, 162, 72, 0.46);
+  --brand-spotlight-fade: rgba(71, 162, 72, 0.22);
+  --brand-glow-ambient: rgba(71, 162, 72, 0.25);
+  --brand-glow-shadow: rgba(71, 162, 72, 0.4);
+}
+
+/* 12. MySQL */
+.card-mysql {
+  --brand-color: #00758F;
+  --brand-border: rgba(0, 117, 143, 0.45);
+  --brand-spotlight: rgba(0, 117, 143, 0.34);
+  --brand-spotlight-fade: rgba(242, 145, 17, 0.16);
+  --brand-glow-ambient: rgba(0, 117, 143, 0.15);
+  --brand-glow-shadow: rgba(0, 117, 143, 0.22);
+}
+body.dark .card-mysql,
+body.dark-mode .card-mysql,
+[data-theme="dark"] .card-mysql {
+  --brand-border: rgba(0, 117, 143, 0.55);
+  --brand-spotlight: rgba(0, 117, 143, 0.46);
+  --brand-spotlight-fade: rgba(242, 145, 17, 0.24);
+  --brand-glow-ambient: rgba(0, 117, 143, 0.25);
+  --brand-glow-shadow: rgba(0, 117, 143, 0.4);
+}
+
+/* 13. Firebase */
+.card-firebase {
+  --brand-color: #D97706;
+  --brand-border: rgba(255, 160, 0, 0.5);
+  --brand-spotlight: rgba(255, 160, 0, 0.36);
+  --brand-spotlight-fade: rgba(245, 124, 0, 0.16);
+  --brand-glow-ambient: rgba(255, 160, 0, 0.16);
+  --brand-glow-shadow: rgba(217, 119, 6, 0.25);
+}
+body.dark .card-firebase,
+body.dark-mode .card-firebase,
+[data-theme="dark"] .card-firebase {
+  --brand-color: #FFA000;
+  --brand-border: rgba(255, 160, 0, 0.6);
+  --brand-spotlight: rgba(255, 160, 0, 0.52);
+  --brand-spotlight-fade: rgba(245, 124, 0, 0.28);
+  --brand-glow-ambient: rgba(255, 160, 0, 0.28);
+  --brand-glow-shadow: rgba(255, 160, 0, 0.45);
+}
+
+/* 14. NumPy */
+.card-numpy {
+  --brand-color: #0284C7;
+  --brand-border: rgba(77, 171, 207, 0.5);
+  --brand-spotlight: rgba(77, 171, 207, 0.34);
+  --brand-spotlight-fade: rgba(1, 50, 67, 0.14);
+  --brand-glow-ambient: rgba(77, 171, 207, 0.15);
+  --brand-glow-shadow: rgba(2, 132, 199, 0.22);
+}
+body.dark .card-numpy,
+body.dark-mode .card-numpy,
+[data-theme="dark"] .card-numpy {
+  --brand-border: rgba(77, 171, 207, 0.55);
+  --brand-spotlight: rgba(77, 171, 207, 0.46);
+  --brand-spotlight-fade: rgba(77, 171, 207, 0.22);
+  --brand-glow-ambient: rgba(77, 171, 207, 0.25);
+  --brand-glow-shadow: rgba(77, 171, 207, 0.4);
+}
+
+/* 15. Pandas */
+.card-pandas {
+  --brand-color: #BE185D;
+  --brand-border: rgba(231, 4, 136, 0.45);
+  --brand-spotlight: rgba(231, 4, 136, 0.32);
+  --brand-spotlight-fade: rgba(21, 4, 88, 0.14);
+  --brand-glow-ambient: rgba(231, 4, 136, 0.15);
+  --brand-glow-shadow: rgba(190, 24, 93, 0.22);
+}
+body.dark .card-pandas,
+body.dark-mode .card-pandas,
+[data-theme="dark"] .card-pandas {
+  --brand-border: rgba(231, 4, 136, 0.55);
+  --brand-spotlight: rgba(231, 4, 136, 0.46);
+  --brand-spotlight-fade: rgba(21, 4, 88, 0.22);
+  --brand-glow-ambient: rgba(231, 4, 136, 0.25);
+  --brand-glow-shadow: rgba(231, 4, 136, 0.4);
+}
+
+/* 16. Matplotlib */
+.card-matplotlib {
+  --brand-color: #11557C;
+  --brand-border: rgba(17, 85, 124, 0.45);
+  --brand-spotlight: rgba(17, 85, 124, 0.34);
+  --brand-spotlight-fade: rgba(255, 170, 0, 0.16);
+  --brand-glow-ambient: rgba(17, 85, 124, 0.15);
+  --brand-glow-shadow: rgba(17, 85, 124, 0.22);
+}
+body.dark .card-matplotlib,
+body.dark-mode .card-matplotlib,
+[data-theme="dark"] .card-matplotlib {
+  --brand-border: rgba(17, 85, 124, 0.55);
+  --brand-spotlight: rgba(17, 85, 124, 0.46);
+  --brand-spotlight-fade: rgba(255, 170, 0, 0.24);
+  --brand-glow-ambient: rgba(17, 85, 124, 0.25);
+  --brand-glow-shadow: rgba(17, 85, 124, 0.4);
+}
+
+/* 17. Scikit-learn */
+.card-scikitlearn {
+  --brand-color: #D97706;
+  --brand-border: rgba(247, 147, 30, 0.45);
+  --brand-spotlight: rgba(247, 147, 30, 0.34);
+  --brand-spotlight-fade: rgba(52, 153, 205, 0.16);
+  --brand-glow-ambient: rgba(247, 147, 30, 0.15);
+  --brand-glow-shadow: rgba(217, 119, 6, 0.22);
+}
+body.dark .card-scikitlearn,
+body.dark-mode .card-scikitlearn,
+[data-theme="dark"] .card-scikitlearn {
+  --brand-border: rgba(247, 147, 30, 0.55);
+  --brand-spotlight: rgba(247, 147, 30, 0.48);
+  --brand-spotlight-fade: rgba(52, 153, 205, 0.24);
+  --brand-glow-ambient: rgba(247, 147, 30, 0.25);
+  --brand-glow-shadow: rgba(247, 147, 30, 0.4);
+}
+
+/* 18. Machine Learning */
+.card-ml {
+  --brand-color: #7C3AED;
+  --brand-border: rgba(139, 92, 246, 0.45);
+  --brand-spotlight: rgba(139, 92, 246, 0.34);
+  --brand-spotlight-fade: rgba(139, 92, 246, 0.15);
+  --brand-glow-ambient: rgba(139, 92, 246, 0.16);
+  --brand-glow-shadow: rgba(124, 58, 237, 0.22);
+}
+body.dark .card-ml,
+body.dark-mode .card-ml,
+[data-theme="dark"] .card-ml {
+  --brand-border: rgba(139, 92, 246, 0.55);
+  --brand-spotlight: rgba(139, 92, 246, 0.48);
+  --brand-spotlight-fade: rgba(139, 92, 246, 0.24);
+  --brand-glow-ambient: rgba(139, 92, 246, 0.26);
+  --brand-glow-shadow: rgba(139, 92, 246, 0.42);
+}
+
+/* 19. Data Analysis */
+.card-dataanalysis {
+  --brand-color: #0891B2;
+  --brand-border: rgba(6, 182, 212, 0.45);
+  --brand-spotlight: rgba(6, 182, 212, 0.34);
+  --brand-spotlight-fade: rgba(16, 185, 129, 0.15);
+  --brand-glow-ambient: rgba(6, 182, 212, 0.15);
+  --brand-glow-shadow: rgba(8, 145, 178, 0.22);
+}
+body.dark .card-dataanalysis,
+body.dark-mode .card-dataanalysis,
+[data-theme="dark"] .card-dataanalysis {
+  --brand-border: rgba(6, 182, 212, 0.55);
+  --brand-spotlight: rgba(6, 182, 212, 0.48);
+  --brand-spotlight-fade: rgba(16, 185, 129, 0.24);
+  --brand-glow-ambient: rgba(6, 182, 212, 0.25);
+  --brand-glow-shadow: rgba(6, 182, 212, 0.4);
+}
+
+/* 20. Git */
+.card-git {
+  --brand-color: #EA580C;
+  --brand-border: rgba(240, 80, 50, 0.45);
+  --brand-spotlight: rgba(240, 80, 50, 0.34);
+  --brand-spotlight-fade: rgba(240, 80, 50, 0.14);
+  --brand-glow-ambient: rgba(240, 80, 50, 0.15);
+  --brand-glow-shadow: rgba(234, 88, 12, 0.22);
+}
+body.dark .card-git,
+body.dark-mode .card-git,
+[data-theme="dark"] .card-git {
+  --brand-border: rgba(240, 80, 50, 0.55);
+  --brand-spotlight: rgba(240, 80, 50, 0.48);
+  --brand-spotlight-fade: rgba(240, 80, 50, 0.24);
+  --brand-glow-ambient: rgba(240, 80, 50, 0.25);
+  --brand-glow-shadow: rgba(240, 80, 50, 0.4);
+}
+
+/* 21. GitHub */
+.card-github {
+  --brand-color: #24292E;
+  --brand-border: rgba(36, 41, 46, 0.35);
+  --brand-spotlight: rgba(36, 41, 46, 0.18);
+  --brand-spotlight-fade: rgba(100, 100, 100, 0.08);
+  --brand-glow-ambient: rgba(36, 41, 46, 0.1);
+  --brand-glow-shadow: rgba(0, 0, 0, 0.12);
+}
+body.dark .card-github,
+body.dark-mode .card-github,
+[data-theme="dark"] .card-github {
+  --brand-color: #FFFFFF;
+  --brand-border: rgba(255, 255, 255, 0.4);
+  --brand-spotlight: rgba(255, 255, 255, 0.3);
+  --brand-spotlight-fade: rgba(255, 255, 255, 0.12);
+  --brand-glow-ambient: rgba(255, 255, 255, 0.16);
+  --brand-glow-shadow: rgba(255, 255, 255, 0.25);
+}
+
+/* 22. VS Code */
+.card-vscode {
+  --brand-color: #0284C7;
+  --brand-border: rgba(0, 122, 204, 0.45);
+  --brand-spotlight: rgba(0, 122, 204, 0.34);
+  --brand-spotlight-fade: rgba(0, 122, 204, 0.14);
+  --brand-glow-ambient: rgba(0, 122, 204, 0.15);
+  --brand-glow-shadow: rgba(2, 132, 199, 0.22);
+}
+body.dark .card-vscode,
+body.dark-mode .card-vscode,
+[data-theme="dark"] .card-vscode {
+  --brand-border: rgba(0, 122, 204, 0.55);
+  --brand-spotlight: rgba(0, 122, 204, 0.48);
+  --brand-spotlight-fade: rgba(0, 122, 204, 0.24);
+  --brand-glow-ambient: rgba(0, 122, 204, 0.25);
+  --brand-glow-shadow: rgba(0, 122, 204, 0.4);
+}
+
+/* 23. Jupyter Notebook */
+.card-jupyter {
+  --brand-color: #EA580C;
+  --brand-border: rgba(243, 118, 38, 0.45);
+  --brand-spotlight: rgba(243, 118, 38, 0.34);
+  --brand-spotlight-fade: rgba(243, 118, 38, 0.14);
+  --brand-glow-ambient: rgba(243, 118, 38, 0.15);
+  --brand-glow-shadow: rgba(234, 88, 12, 0.22);
+}
+body.dark .card-jupyter,
+body.dark-mode .card-jupyter,
+[data-theme="dark"] .card-jupyter {
+  --brand-border: rgba(243, 118, 38, 0.55);
+  --brand-spotlight: rgba(243, 118, 38, 0.48);
+  --brand-spotlight-fade: rgba(243, 118, 38, 0.24);
+  --brand-glow-ambient: rgba(243, 118, 38, 0.25);
+  --brand-glow-shadow: rgba(243, 118, 38, 0.4);
+}
+
+/* 24. Vercel */
+.card-vercel {
+  --brand-color: #000000;
+  --brand-border: rgba(0, 0, 0, 0.35);
+  --brand-spotlight: rgba(0, 0, 0, 0.16);
+  --brand-spotlight-fade: rgba(100, 100, 100, 0.08);
+  --brand-glow-ambient: rgba(0, 0, 0, 0.1);
+  --brand-glow-shadow: rgba(0, 0, 0, 0.12);
+}
+body.dark .card-vercel,
+body.dark-mode .card-vercel,
+[data-theme="dark"] .card-vercel {
+  --brand-color: #FFFFFF;
+  --brand-border: rgba(255, 255, 255, 0.4);
+  --brand-spotlight: rgba(255, 255, 255, 0.3);
+  --brand-spotlight-fade: rgba(255, 255, 255, 0.12);
+  --brand-glow-ambient: rgba(255, 255, 255, 0.16);
+  --brand-glow-shadow: rgba(255, 255, 255, 0.25);
+}
+
+/* Responsive Grid Breakpoints */
+@media screen and (max-width: 1400px) {
+  .skills-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .skills-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .skills-area {
+    padding-block: 80px 80px;
+  }
+  .skills-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .tech-card {
+    min-height: 120px;
+    padding: 18px 12px;
+    border-radius: 12px;
+  }
+  .tech-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .tech-name {
+    font-size: 0.85rem;
+  }
+  .skills-title {
+    font-size: 1.85rem;
+  }
+  .skills-filter-btn {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .tech-card,
+  .tech-icon,
+  .skills-filter-btn {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   CURSOR DOT REMOVAL (Clean Cursor without White Dot)
+   ========================================================================== */
+#magic-cursor,
+#ball,
+.tw-magic-cursor #magic-cursor,
+.tw-magic-cursor #ball {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ==========================================================================
+   HERO SETTINGS MENU & CURSOR ANIMATION ON/OFF SWITCH
+   ========================================================================== */
+/* Hero Settings Dropdown Menu (Drop-Up Popover) */
+.hero-setting-dropdown-wrapper {
+  position: relative !important;
+  display: inline-block !important;
+  z-index: 99999 !important;
+}
+
+.hero-setting-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #111827;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-setting-btn:hover {
+  background: #fdfdfd;
+  border-color: #F28C28;
+  color: #000000;
+  box-shadow: 0 6px 20px rgba(242, 140, 40, 0.18);
+  transform: translateY(-2px);
+}
+
+.hero-setting-btn .hero-gear-icon {
+  color: #F28C28;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-setting-btn:hover .hero-gear-icon {
+  transform: rotate(90deg);
+}
+
+.hero-setting-btn .hero-caret-icon {
+  transition: transform 0.3s ease;
+  color: #9ca3af;
+}
+
+.hero-setting-btn.active .hero-caret-icon {
+  transform: rotate(180deg);
+}
+
+/* Drop-Up Popover Menu Card - Opens Above Settings Button with clean arrow */
+.hero-setting-menu-card {
+  position: absolute !important;
+  bottom: calc(100% + 14px) !important;
+  top: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(-10px) !important;
+  width: 310px !important;
+  max-width: 90vw !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 16px !important;
+  padding: 20px 22px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 999999 !important;
+  text-align: left !important;
+}
+
+.hero-setting-menu-card.show {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+/* Downward arrow pointer */
+.hero-setting-menu-card::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  border-width: 8px 8px 0 8px !important;
+  border-style: solid !important;
+  border-color: #ffffff transparent transparent transparent !important;
+}
+
+body.dark .hero-setting-menu-card::after,
+html.dark .hero-setting-menu-card::after,
+.dark .hero-setting-menu-card::after {
+  border-color: #111111 transparent transparent transparent !important;
+}
+
+/* About Three Decorative Wrap Shape (Counter items on both sides) */
+.about-three-area {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.about-three-top {
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+.about-three-wrap-shape {
+  position: absolute !important;
+  inset-block-start: -172px !important;
+  width: 100% !important;
+  inset-inline-start: 0 !important;
+  z-index: 25 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+.about-three-wrap-shape .banner-three-counter-item {
+  position: relative !important;
+  z-index: 26 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  padding: 22px 26px !important;
+  border-radius: 12px !important;
+  margin-block-start: 0 !important;
+}
+
+.about-three-wrap-shape .banner-three-counter-item:nth-child(2) {
+  margin-block-start: 0 !important;
+}
+
+body.dark .about-three-wrap-shape .banner-three-counter-item,
+html.dark .about-three-wrap-shape .banner-three-counter-item,
+.dark .about-three-wrap-shape .banner-three-counter-item {
+  background: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.about-three-wrap-shape .banner-three-counter-title {
+  color: #111111 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+body.dark .about-three-wrap-shape .banner-three-counter-title,
+html.dark .about-three-wrap-shape .banner-three-counter-title,
+.dark .about-three-wrap-shape .banner-three-counter-title {
+  color: #ffffff !important;
+}
+
+.about-three-wrap-shape .banner-three-counter-paragraph {
+  color: #555555 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+body.dark .about-three-wrap-shape .banner-three-counter-paragraph,
+html.dark .about-three-wrap-shape .banner-three-counter-paragraph,
+.dark .about-three-wrap-shape .banner-three-counter-paragraph {
+  color: #9ca3af !important;
+}
+
+.about-three-shape {
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* Headings Contrast & Text Reveal Safeguard */
+.about-three-title,
+.testimonial-three-title {
+  visibility: visible !important;
+  color: #111111 !important;
+}
+
+body.dark .about-three-title,
+body.dark .testimonial-three-title,
+html.dark .about-three-title,
+html.dark .testimonial-three-title,
+.dark .about-three-title,
+.dark .testimonial-three-title {
+  color: #ffffff !important;
+}
+
+.about-three-title .split-line,
+.testimonial-three-title .split-line {
+  visibility: visible !important;
+}
+
+/* Dark Mode Support for Settings Menu */
+body.dark .hero-setting-menu-card,
+html.dark .hero-setting-menu-card,
+.dark .hero-setting-menu-card {
+  background: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(242, 140, 40, 0.15) !important;
+}
+
+body.dark .hero-setting-btn,
+html.dark .hero-setting-btn,
+.dark .hero-setting-btn {
+  background: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+body.dark .hero-setting-btn:hover,
+html.dark .hero-setting-btn:hover,
+.dark .hero-setting-btn:hover {
+  border-color: #F28C28 !important;
+  color: #F28C28 !important;
+}
+
+body.dark .hero-setting-menu-header,
+html.dark .hero-setting-menu-header,
+.dark .hero-setting-menu-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark .setting-item-title,
+html.dark .setting-item-title,
+.dark .setting-item-title {
+  color: #ffffff !important;
+}
+
+body.dark .setting-item-desc,
+html.dark .setting-item-desc,
+.dark .setting-item-desc {
+  color: #9ca3af !important;
+}
+
+body.dark .sanvex-toggle-track,
+html.dark .sanvex-toggle-track,
+.dark .sanvex-toggle-track {
+  background-color: #374151 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark .sanvex-toggle-switch input:checked + .sanvex-toggle-track,
+html.dark .sanvex-toggle-switch input:checked + .sanvex-toggle-track,
+.dark .sanvex-toggle-switch input:checked + .sanvex-toggle-track {
+  background-color: #F28C28 !important;
+}
+
+body.dark .hero-setting-footer,
+html.dark .hero-setting-footer,
+.dark .hero-setting-footer {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  color: #9ca3af !important;
+}
+
+.hero-setting-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.setting-header-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(242, 140, 40, 0.1);
+}
+
+.badge-status-pill {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(242, 140, 40, 0.12);
+  color: #d97706;
+}
+
+.hero-setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.setting-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.setting-item-desc {
+  font-size: 11.5px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* Custom iOS-style Toggle Switch */
+.sanvex-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sanvex-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.sanvex-toggle-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e5e7eb;
+  border-radius: 34px;
+  transition: background-color 0.25s ease;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.sanvex-toggle-thumb {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sanvex-toggle-switch input:checked + .sanvex-toggle-track {
+  background-color: #F28C28;
+}
+
+.sanvex-toggle-switch input:checked + .sanvex-toggle-track .sanvex-toggle-thumb {
+  transform: translateX(21px);
+}
+
+.hero-setting-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 11.5px;
+  color: #9ca3af;
+}
+
+.hero-setting-footer strong.text-success {
+  color: #16a34a !important;
+}
+
+.hero-setting-footer strong.text-muted {
+  color: #9ca3af !important;
+}
+
+/* ==========================================================================
+   MY LEARNING UNIVERSE SECTION & VIDEO MODAL STYLES
+   ========================================================================== */
+.learning-section-label {
+  color: #F28C28 !important;
+  letter-spacing: 0.12em;
+}
+
+.learning-tabs-switcher {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  float: none !important;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+body.dark .learning-tabs-switcher,
+html.dark .learning-tabs-switcher,
+.dark .learning-tabs-switcher {
+  background: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.learning-tab-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.learning-tab-nav-btn:hover {
+  color: #111827;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.learning-tab-nav-btn.active {
+  background: #111827;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.learning-tab-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(242, 140, 40, 0.18);
+  color: #F28C28;
+  line-height: 1;
+}
+
+.learning-tab-nav-btn.active .learning-tab-count-badge {
+  background: #F28C28;
+  color: #ffffff;
+}
+
+/* Category badge on thumbnail */
+.learning-badge-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+
+.learning-playlist-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: #F28C28;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(242, 140, 40, 0.4);
+}
+
+.learning-channel-tag {
+  color: #F28C28 !important;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.learning-card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.35;
+  min-height: 2.7em;
+}
+
+.learning-watch-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #F28C28;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.learning-watch-btn:hover {
+  color: #d97706;
+  transform: translateX(3px);
+}
+
+/* In-Website Centered Video Modal */
+.sanvex-video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sanvex-video-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sanvex-video-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.sanvex-video-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(242, 140, 40, 0.15);
+  overflow: hidden;
+  z-index: 1;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sanvex-video-modal.show .sanvex-video-modal-container {
+  transform: scale(1);
+}
+
+.sanvex-video-modal-content {
+  padding: 16px 20px;
+}
+
+.sanvex-modal-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sanvex-modal-close-btn:hover {
+  background: #F28C28;
+  border-color: #F28C28;
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.sanvex-video-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  background: #000000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.sanvex-video-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.sanvex-video-play-btn {
+  cursor: pointer;
+}
+
+/* Slider Arrow Navigation Buttons */
+.learning-slider-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #111827;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.learning-slider-arrow:hover {
+  background: #F28C28;
+  border-color: #F28C28;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(242, 140, 40, 0.25);
+}
+
+.learning-slider-arrow:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   FOOTER PROFILE CARD - CENTERED ALIGNMENT
+   ========================================================================== */
+.footer-three-top-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important;
+  padding: 24px 28px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.footer-three-top-thumb {
+  width: 140px !important;
+  height: 140px !important;
+  max-width: 140px !important;
+  flex-shrink: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.footer-three-top-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+}
+
+.footer-three-top-content {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+}
+
+.footer-three-top-content .footer-profile-name {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.2 !important;
+  margin-bottom: 4px !important;
+}
+
+.footer-three-top-content .footer-profile-role {
+  font-size: 0.9rem !important;
+  color: #d1d5db !important;
+  font-weight: 400 !important;
+  margin-bottom: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.footer-three-social ul {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.footer-three-social ul li a {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+.footer-three-social ul li a:hover {
+  background: #F28C28 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ========================================================
+   SANVEX Live Projects Section Refinements
+   Preserves original structure & animations pixel-for-pixel
+======================================================== */
+.service-three-single {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden !important;
+  padding: 24px 55px 24px 60px !important;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .service-three-single {
+    padding: 24px 40px !important;
+    border-radius: 120px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .service-three-single {
+    border-radius: 30px !important;
+    padding: 24px 20px !important;
+  }
+}
+
+.service-three-single:hover {
+  transform: translateY(-4px);
+  border-color: #F28C28 !important;
+  box-shadow: 0 16px 40px rgba(242, 140, 40, 0.15) !important;
+}
+
+.service-three-single:hover .service-three-number {
+  color: #F28C28 !important;
+}
+
+.service-three-single:hover .service-three-title a {
+  color: #F28C28 !important;
+}
+
+.service-three-thumb {
+  max-width: 340px !important;
+  width: 100% !important;
+  flex-shrink: 0 !important;
+  margin-inline-end: 10px !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .service-three-thumb {
+    max-width: 290px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .service-three-thumb {
+    max-width: 100% !important;
+    margin-inline-end: 0 !important;
+  }
+}
+
+.service-three-thumb img {
+  border-radius: 14px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  aspect-ratio: 16 / 10 !important;
+  object-fit: cover !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.service-three-single:hover .service-three-thumb img {
+  transform: scale(1.02);
+}
+
+.service-three-desc {
+  color: #9ca3af !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Feature Three Hover Reveal Project Rows */
+.feature-three-single {
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-three-single:hover {
+  border-color: rgba(242, 140, 40, 0.4) !important;
+}
+
+.feature-three-single:hover .feature-three-text {
+  color: #F28C28 !important;
+}
+
+/* ==========================================================================
+   SANVEX CV / Resume Viewer Modal
+   ========================================================================== */
+.sanvex-cv-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sanvex-cv-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sanvex-cv-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.sanvex-cv-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  height: 90vh;
+  max-height: 960px;
+  background: #0f1012;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 45px rgba(213, 250, 1, 0.12);
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.96);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sanvex-cv-modal.show .sanvex-cv-modal-container {
+  transform: scale(1);
+}
+
+.sanvex-cv-modal-content {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.sanvex-cv-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(213, 250, 1, 0.1);
+  border: 1px solid rgba(213, 250, 1, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sanvex-cv-action-download {
+  background: #d5fa01;
+  color: #111111 !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(213, 250, 1, 0.3);
+  text-decoration: none;
+}
+
+.sanvex-cv-action-download:hover {
+  background: #ffffff;
+  color: #000000 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+.sanvex-cv-action-external {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.sanvex-cv-action-external:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.sanvex-cv-viewer-wrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #18191c;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.sanvex-cv-viewer-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* White Theme Adaptation */
+body.light .sanvex-cv-modal-container,
+[data-theme="light"] .sanvex-cv-modal-container {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+}
+
+body.light .sanvex-cv-title,
+[data-theme="light"] .sanvex-cv-title {
+  color: #111827 !important;
+}
+
+body.light .sanvex-cv-modal-header,
+[data-theme="light"] .sanvex-cv-modal-header {
+  border-color: #e5e7eb !important;
+}
+
+body.light .sanvex-cv-viewer-wrap,
+[data-theme="light"] .sanvex-cv-viewer-wrap {
+  background: #f3f4f6;
+}

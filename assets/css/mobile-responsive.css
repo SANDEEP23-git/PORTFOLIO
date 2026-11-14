@@ -1,0 +1,1043 @@
+/* ==========================================================================
+   SANVEX PORTFOLIO — DEDICATED MOBILE RESPONSIVE ENGINE
+   Strictly scoped to mobile & tablet viewports: max-width: 991px.
+   DESKTOP (min-width: 992px) REMAINS 100% COMPLETELY UNTOUCHED.
+   Supports: 320px, 360px, 375px, 390px, 412px, 430px, 480px, 575px, 767px, 991px.
+   ========================================================================== */
+
+@media screen and (max-width: 991px) {
+  /* -------------------------------------------------------------------------
+     01. GLOBAL SAFETY & VIEWPORT CONTAINMENT
+     ------------------------------------------------------------------------- */
+  html,
+  body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  #smooth-wrapper,
+  #smooth-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .container,
+  .tw-container-1800-px {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent text blowouts */
+  h1, h2, h3, h4, h5, h6, p, a, span {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Image safety */
+  img, svg, video, iframe {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  canvas.splash-cursor-canvas {
+    max-width: 100vw !important;
+    pointer-events: none !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     02. NAVIGATION BAR & MOBILE OFFCANVAS DRAWER
+     ------------------------------------------------------------------------- */
+  .header.header-three {
+    padding: 14px 0 !important;
+    position: relative;
+    z-index: 999;
+  }
+
+  .header-three .logo-1 img {
+    max-width: 135px !important;
+    height: auto !important;
+  }
+
+  .header-three-menu .tw-offcanvas-open-btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+  }
+
+  /* Full-bleed offcanvas drawer */
+  .tw-offcanvas-2-area {
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  .tw-offcanvas-2-wrapper {
+    width: 100% !important;
+  }
+
+  .tw-offcanvas-2-left {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 24px 20px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tw-offcanvas-2-left-wrap {
+    margin-bottom: 24px !important;
+  }
+
+  .tw-main-menu-mobile ul li a {
+    font-size: 1.2rem !important;
+    padding: 12px 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .tw-main-menu-mobile .submenu {
+    padding-left: 14px !important;
+  }
+
+  .tw-main-menu-mobile .submenu li a {
+    font-size: 1rem !important;
+    padding: 8px 0 !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     03. HERO SECTION (banner-three-area)
+     ------------------------------------------------------------------------- */
+  .banner-three-area {
+    padding-block: 80px 40px !important;
+    overflow: hidden !important;
+  }
+
+  .banner-three-wrap {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+
+  /* Hide side floating boxes on mobile so main hero shines */
+  .banner-three-left,
+  .banner-three-right {
+    display: none !important;
+  }
+
+  .banner-three-center {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  /* Giant "Developer" background text */
+  .banner-three-title {
+    font-size: clamp(44px, 13vw, 84px) !important;
+    line-height: 0.95 !important;
+    margin-bottom: 16px !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* Profile Man Cutout Image */
+  .banner-three-man {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 auto 20px auto !important;
+    max-width: min(300px, 80vw) !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  .banner-three-man img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 360px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  /* Center Subtitle */
+  .banner-three-center-title {
+    font-size: clamp(22px, 6vw, 34px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 22px !important;
+    text-align: center !important;
+  }
+
+  /* Hero Call-to-Action Buttons */
+  .banner-three-button {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .banner-three-button a {
+    width: 100% !important;
+    max-width: 280px !important;
+    text-align: center !important;
+    padding: 13px 20px !important;
+    font-size: 0.85rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  /* Hero Settings Menu Button */
+  .hero-settings-wrapper {
+    margin-top: 10px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .hero-setting-toggle-btn {
+    padding: 7px 16px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .hero-setting-menu-card {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: min(320px, calc(100vw - 32px)) !important;
+    max-width: 320px !important;
+    box-sizing: border-box !important;
+  }
+
+  .banner-three-line-shape {
+    display: none !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     04. ABOUT SECTION (#about-section, about-three-area)
+     ------------------------------------------------------------------------- */
+  .about-three-area {
+    padding-block: 70px 50px !important;
+    overflow: hidden !important;
+  }
+
+  .about-three-top .row.tw-mb-21 {
+    margin-bottom: 28px !important;
+  }
+
+  .about-three-title {
+    font-size: clamp(20px, 5.5vw, 30px) !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    padding: 0 4px !important;
+  }
+
+  /* 3D Lanyard Card Slot */
+  .about-three-thumb {
+    min-height: 380px !important;
+    height: 380px !important;
+    max-width: 100% !important;
+    margin-bottom: 28px !important;
+    position: relative !important;
+  }
+
+  #lanyard-card-container {
+    top: -20px !important;
+    height: calc(100% + 40px) !important;
+  }
+
+  .about-three-right {
+    text-align: center !important;
+    padding: 0 4px !important;
+  }
+
+  .about-three-right p {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* 2+ Years Experience Circle Button */
+  .about-three-counter {
+    margin: 20px auto 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .about-three-counter .tw-btn-circle {
+    width: 125px !important;
+    height: 125px !important;
+  }
+
+  .about-three-counter .tw-btn-circle-icon {
+    font-size: 1.8rem !important;
+  }
+
+  .about-three-counter .text-heading.tw-text-2xl {
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     05. SKILLS SECTION (#skills, skills-area)
+     ------------------------------------------------------------------------- */
+  .skills-area {
+    padding-block: 70px 50px !important;
+  }
+
+  .skills-label {
+    font-size: 0.75rem !important;
+    letter-spacing: 0.12em !important;
+    margin-bottom: 8px !important;
+  }
+
+  .skills-heading {
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .skills-title {
+    font-size: clamp(24px, 6.5vw, 34px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .skills-subtitle {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    padding: 0 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .skills-filter-wrapper {
+    margin-top: 18px !important;
+    margin-bottom: 26px !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+
+  .skills-filter-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .tech-card {
+    min-height: 105px !important;
+    padding: 14px 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .tech-icon {
+    width: 32px !important;
+    height: 32px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .tech-name {
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     06. LIVE PROJECTS SECTION (service-three-area)
+     ------------------------------------------------------------------------- */
+  .service-three-area {
+    padding-block: 70px 50px !important;
+  }
+
+  .service-three-single {
+    width: 100% !important;
+    margin-bottom: 45px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-bottom: 30px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .service-three-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 18px !important;
+  }
+
+  .service-three-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .service-three-number {
+    margin-top: 0 !important;
+    font-size: 1.15rem !important;
+  }
+
+  .service-three-title {
+    font-size: clamp(22px, 6vw, 32px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .service-three-desc {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 14px !important;
+    max-width: 100% !important;
+  }
+
+  .portfolio-two-list ul {
+    gap: 6px !important;
+  }
+
+  .portfolio-two-list ul li a {
+    font-size: 0.74rem !important;
+    padding: 5px 12px !important;
+  }
+
+  .service-three-thumb {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 8px !important;
+  }
+
+  .service-three-thumb img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 240px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     07. WORK SECTION (#work, portfolio-three-area) & CARDSWAP
+     ------------------------------------------------------------------------- */
+  .portfolio-three-area {
+    padding-block: 70px 50px !important;
+    overflow: hidden !important;
+  }
+
+  .portfolio-three-area .row.tw-mb-12 {
+    margin-bottom: 22px !important;
+  }
+
+  .portfolio-three-area h2 {
+    font-size: clamp(24px, 6.5vw, 34px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .portfolio-three-area p {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    padding: 0 10px !important;
+  }
+
+  .portfolio-three-shape {
+    top: 30px;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .portfolio-three-shape-title {
+    font-size: clamp(80px, 20vw, 150px) !important;
+    line-height: 0.9 !important;
+    text-align: center !important;
+    opacity: 0.8 !important;
+    width: 100% !important;
+  }
+
+  /* CardSwap Interactive 3D Stack */
+  .card-swap-container {
+    min-height: 480px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 4px !important;
+    margin: 0 auto !important;
+  }
+
+  .card-swap-root {
+    height: 450px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .card-swap-slot {
+    width: min(340px, calc(100vw - 32px)) !important;
+    height: 380px !important;
+  }
+
+  .card-swap-item {
+    padding: 16px 14px !important;
+    border-radius: 18px !important;
+  }
+
+  .card-swap-badge {
+    font-size: 0.68rem !important;
+    padding: 4px 10px !important;
+  }
+
+  .card-swap-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 14px !important;
+  }
+
+  .card-swap-title {
+    font-size: 1.2rem !important;
+    margin: 10px 0 6px !important;
+  }
+
+  .card-swap-tags {
+    gap: 6px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .card-swap-pill {
+    font-size: 0.7rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .card-swap-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .card-swap-thumb {
+    height: 140px !important;
+    border-radius: 12px !important;
+  }
+
+  .card-swap-controls {
+    margin-top: 14px !important;
+    gap: 14px !important;
+  }
+
+  .card-swap-nav-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  #viewOurProjectsBtn {
+    width: 130px !important;
+    height: 130px !important;
+  }
+
+  #viewOurProjectsBtn span.tw-text-xl {
+    font-size: 0.95rem !important;
+    line-height: 1.25 !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     08. ACHIEVEMENTS & CERTIFICATES (feature-three-area)
+     ------------------------------------------------------------------------- */
+  .feature-three-area {
+    padding-block: 60px 40px !important;
+  }
+
+  .feature-three-single {
+    padding: 16px 0 !important;
+  }
+
+  .feature-three-item {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .feature-three-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .feature-three-left .tw-w-20 {
+    width: 32px !important;
+    font-size: 1.05rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .feature-three-left .tw-w-160-px {
+    width: auto !important;
+    font-size: 1.15rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .feature-three-left > div:nth-child(3) {
+    display: none !important;
+  }
+
+  .feature-three-item > div:last-child span {
+    font-size: 1.1rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     09. YOUTUBE LEARNING UNIVERSE (#learning, testimonial-three-area)
+     ------------------------------------------------------------------------- */
+  .testimonial-three-area {
+    padding-block: 70px 50px !important;
+  }
+
+  .testimonial-three-area .row.tw-mb-12 {
+    margin-bottom: 22px !important;
+  }
+
+  .testimonial-three-title {
+    font-size: clamp(24px, 6.5vw, 34px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .learning-section-sub {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    padding: 0 10px !important;
+  }
+
+  .learning-tabs-switcher {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    gap: 5px !important;
+    padding: 6px !important;
+    margin: 0 auto !important;
+  }
+
+  .learning-tab-nav-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 9px 12px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .testimonial-three-wrapper {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px !important;
+    gap: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .testimonial-three-thumb {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .testimonial-three-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Compact Play Button on Mobile Thumbnails */
+  .sanvex-video-play-btn.testimonial-three-btn {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    font-size: 1.25rem !important;
+  }
+
+  .testimonial-three-content {
+    width: 100% !important;
+  }
+
+  .testimonial-three-content h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .learning-badge-pill {
+    font-size: 0.72rem !important;
+    padding: 4px 10px !important;
+  }
+
+  .learning-watch-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 11px 16px !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     10. TEAM MEMBERS & COLLABORATORS (#collaborators-section)
+     ------------------------------------------------------------------------- */
+  .brand-three-area {
+    padding-block: 70px 50px !important;
+  }
+
+  .brand-three-title {
+    font-size: clamp(24px, 6.5vw, 34px) !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Clean 2-column mobile grid */
+  .brand-three-area .gx-2 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin: 0 -6px !important;
+  }
+
+  .brand-three-area .gx-2 > [class*="col-"] {
+    width: 50% !important;
+    max-width: 50% !important;
+    flex: 0 0 50% !important;
+    padding: 0 6px !important;
+  }
+
+  .brand-item.sanvex-team-card {
+    height: 165px !important;
+    padding: 14px 8px !important;
+    border-radius: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .team-photo-wrap {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .team-photo-badge {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 9px !important;
+  }
+
+  .team-name {
+    font-size: 0.85rem !important;
+    margin: 8px 0 2px !important;
+  }
+
+  .team-role {
+    font-size: 0.7rem !important;
+  }
+
+  /* Team Member Profile Popup Modal */
+  .sanvex-team-modal {
+    padding: 12px !important;
+  }
+
+  .sanvex-team-modal-card {
+    width: 100% !important;
+    max-width: min(390px, 94vw) !important;
+    padding: 26px 18px 20px !important;
+    border-radius: 20px !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 auto !important;
+  }
+
+  .sanvex-team-modal-avatar-wrap {
+    width: 76px !important;
+    height: 76px !important;
+  }
+
+  .sanvex-team-modal-name {
+    font-size: 1.25rem !important;
+  }
+
+  .sanvex-team-modal-role-badge {
+    font-size: 0.72rem !important;
+    padding: 4px 12px !important;
+  }
+
+  .sanvex-team-modal-bio {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .sanvex-team-skill-pill {
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .sanvex-team-social-btn {
+    padding: 8px 14px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     11. CONTACT SECTION & FOOTER (footer-three-area)
+     ------------------------------------------------------------------------- */
+  .footer-three-area {
+    padding-block: 70px 30px !important;
+  }
+
+  .footer-three-area .row.pb-120 {
+    padding-bottom: 40px !important;
+  }
+
+  .footer-three-top-left {
+    margin-right: 0 !important;
+    margin-bottom: 35px !important;
+  }
+
+  .footer-three-top-left h2 {
+    font-size: clamp(26px, 7vw, 38px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .footer-three-top-left .d-inline-flex.tw-gap-6 {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-bottom: 24px !important;
+  }
+
+  .footer-three-top-left .d-inline-flex.tw-gap-6 a {
+    font-size: 1.15rem !important;
+    word-break: break-all !important;
+  }
+
+  .footer-three-top-left .d-inline-flex.tw-gap-6 span {
+    display: none !important;
+  }
+
+  .footer-three-top-info {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 20px 16px !important;
+    gap: 14px !important;
+  }
+
+  .footer-three-top-thumb {
+    width: 86px !important;
+    height: 86px !important;
+    margin: 0 auto !important;
+  }
+
+  .footer-three-top-content {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .footer-profile-name {
+    font-size: 1.15rem !important;
+  }
+
+  .footer-three-social ul {
+    justify-content: center !important;
+  }
+
+  .footer-three-social ul li a {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .footer-three-form input,
+  .footer-three-form textarea {
+    height: 50px !important;
+    font-size: 0.95rem !important;
+    padding: 12px 16px !important;
+    border-radius: 10px !important;
+  }
+
+  .footer-three-form textarea {
+    height: 110px !important;
+  }
+
+  /* SlideCommit Connect Slider on Mobile */
+  #slide-commit-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .sc-root {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .footer-three-middle .d-flex {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 24px !important;
+  }
+
+  .footer-three-middle .text-lg-end {
+    text-align: center !important;
+  }
+
+  .footer-three-back-to-top {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    font-size: 1.35rem !important;
+    margin: 10px auto !important;
+  }
+
+  /* Giant "SANDEEP" Text at Footer */
+  .footer-three-bottom-title {
+    font-size: clamp(38px, 14vw, 76px) !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    letter-spacing: -0.01em !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* -------------------------------------------------------------------------
+     12. MODALS RESPONSIVENESS (CV Modal, Video Modal, Coming Soon)
+     ------------------------------------------------------------------------- */
+  /* CV Modal */
+  .sanvex-cv-modal {
+    padding: 10px !important;
+  }
+
+  .sanvex-cv-modal-container {
+    width: 98vw !important;
+    height: 94vh !important;
+    border-radius: 14px !important;
+  }
+
+  .sanvex-cv-modal-content {
+    padding: 12px 14px !important;
+  }
+
+  .sanvex-cv-title {
+    font-size: 0.92rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .sanvex-cv-action-download {
+    padding: 6px 12px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Video Modal */
+  .sanvex-video-modal {
+    padding: 10px !important;
+  }
+
+  .sanvex-video-modal-container {
+    width: 98vw !important;
+    border-radius: 14px !important;
+  }
+
+  .sanvex-video-modal-content {
+    padding: 12px 14px !important;
+  }
+
+  /* Coming Soon Modal */
+  .sanvex-cs-card {
+    padding: 24px 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .sanvex-cs-headline {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   EXTRA COMPACT PHONE ADJUSTMENTS (<= 375px: iPhone SE, Galaxy Fold, 320px)
+   ------------------------------------------------------------------------- */
+@media screen and (max-width: 375px) {
+  .container,
+  .tw-container-1800-px {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .banner-three-title {
+    font-size: 40px !important;
+  }
+
+  .banner-three-center-title {
+    font-size: 20px !important;
+  }
+
+  .banner-three-button a {
+    max-width: 100% !important;
+    font-size: 0.8rem !important;
+  }
+
+  .about-three-thumb {
+    min-height: 300px !important;
+    height: 300px !important;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .tech-card {
+    padding: 10px 6px !important;
+    min-height: 92px !important;
+  }
+
+  .tech-name {
+    font-size: 0.75rem !important;
+  }
+
+  .card-swap-slot {
+    width: calc(100vw - 26px) !important;
+    height: 350px !important;
+  }
+
+  .card-swap-thumb {
+    height: 120px !important;
+  }
+
+  .brand-three-area .gx-2 > [class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
+  .brand-item.sanvex-team-card {
+    height: 150px !important;
+  }
+
+  .sanvex-team-modal-card {
+    padding: 20px 14px !important;
+  }
+
+  .footer-three-bottom-title {
+    font-size: 36px !important;
+  }
+}

@@ -1,0 +1,514 @@
+/* ==========================================================================
+   REACT BITS — PROFILECARD COMPONENT STYLES
+   3D Holographic Tilt & Parallax Card for SANVEX Team Profiles
+   ========================================================================== */
+
+/* THEMES VARIABLES */
+:root {
+  --pc-light-frame: rgba(255, 253, 250, 0.94);
+  --pc-light-frame-edge: rgba(240, 120, 50, 0.2);
+  --pc-light-frame-highlight: rgba(255, 255, 255, 0.95);
+  --pc-light-frame-shadow: 0 28px 65px -20px rgba(0, 0, 0, 0.3), 0 10px 24px -10px rgba(240, 120, 50, 0.18);
+  --pc-light-tile: linear-gradient(180deg, #ffffff 0%, #f6f6f8 100%);
+  --pc-light-tile-edge: rgba(24, 24, 27, 0.08);
+  --pc-light-tile-highlight: rgba(255, 255, 255, 1);
+  --pc-light-tile-shadow: 0 6px 16px -4px rgba(24, 24, 27, 0.2);
+  --pc-light-ink: #02090f;
+  --pc-light-muted: rgba(39, 39, 42, 0.68);
+  --pc-light-hover: brightness(0.97);
+  --pc-light-press: brightness(0.92);
+  --pc-light-shade: rgba(24, 24, 27, 0.14);
+
+  --pc-dark-frame: rgba(24, 27, 36, 0.88);
+  --pc-dark-frame-edge: rgba(255, 255, 255, 0.09);
+  --pc-dark-frame-highlight: rgba(255, 255, 255, 0.12);
+  --pc-dark-frame-shadow: 0 32px 75px -20px rgba(0, 0, 0, 0.85), 0 12px 28px -10px rgba(0, 0, 0, 0.6);
+  --pc-dark-tile: linear-gradient(180deg, #2b2f3d 0%, #1b1e28 100%);
+  --pc-dark-tile-edge: rgba(255, 255, 255, 0.08);
+  --pc-dark-tile-highlight: rgba(255, 255, 255, 0.14);
+  --pc-dark-tile-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.7);
+  --pc-dark-ink: #f4f4f5;
+  --pc-dark-muted: rgba(244, 244, 245, 0.65);
+  --pc-dark-hover: brightness(1.12);
+  --pc-dark-press: brightness(0.85);
+  --pc-dark-shade: rgba(0, 0, 0, 0.45);
+
+  /* Shared Dynamic Root Variables (Managed by Physics Engine) */
+  --pc-light-x: 50%;
+  --pc-light-y: 50%;
+  --pc-pointer-x: 50%;
+  --pc-pointer-y: 50%;
+  --pc-band-x: 50%;
+  --pc-band-y: 50%;
+  --pc-reach: 0;
+  --pc-rotate-x: 0deg;
+  --pc-rotate-y: 0deg;
+  --pc-shift-x: 0px;
+  --pc-shift-y: 0px;
+  --pc-tilt: 0;
+  --pc-active: 0;
+  --pc-radius: 18px;
+  --pc-parallax: 8px;
+  --pc-status: #22c55e;
+  --pc-holo: 0.8;
+  --pc-glare: 0.55;
+  --pc-holo-gain: 1;
+  --pc-holo-detail: 0.8;
+  --pc-blend: color-dodge;
+  --pc-holo-filter: hue-rotate(0deg);
+  --pc-sheen: rgba(255, 255, 255, 0.18);
+  --pc-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.55 0 0 0 -0.24 0.55 0 0 0 -0.24 0.55 0 0 0 -0.24 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* Light Mode Card Variables */
+.pc-root[data-theme="light"],
+body:not(.dark):not(.dark-mode) .pc-root {
+  --pc-frame: var(--pc-light-frame);
+  --pc-frame-edge: var(--pc-light-frame-edge);
+  --pc-frame-highlight: var(--pc-light-frame-highlight);
+  --pc-frame-shadow: var(--pc-light-frame-shadow);
+  --pc-tile: var(--pc-light-tile);
+  --pc-tile-edge: var(--pc-light-tile-edge);
+  --pc-tile-highlight: var(--pc-light-tile-highlight);
+  --pc-tile-shadow: var(--pc-light-tile-shadow);
+  --pc-ink: var(--pc-light-ink);
+  --pc-muted: var(--pc-light-muted);
+  --pc-hover: var(--pc-light-hover);
+  --pc-press: var(--pc-light-press);
+  --pc-shade: var(--pc-light-shade);
+  --pc-blend: color-dodge;
+  --pc-holo-filter: hue-rotate(0deg);
+  --pc-sheen: rgba(255, 255, 255, 0.22);
+}
+
+/* Dark Mode Card Variables */
+.pc-root[data-theme="dark"],
+body.dark .pc-root,
+body.dark-mode .pc-root,
+[data-theme="dark"] .pc-root {
+  --pc-frame: var(--pc-dark-frame);
+  --pc-frame-edge: var(--pc-dark-frame-edge);
+  --pc-frame-highlight: var(--pc-dark-frame-highlight);
+  --pc-frame-shadow: var(--pc-dark-frame-shadow);
+  --pc-tile: var(--pc-dark-tile);
+  --pc-tile-edge: var(--pc-dark-tile-edge);
+  --pc-tile-highlight: var(--pc-dark-tile-highlight);
+  --pc-tile-shadow: var(--pc-dark-tile-shadow);
+  --pc-ink: var(--pc-dark-ink);
+  --pc-muted: var(--pc-dark-muted);
+  --pc-hover: var(--pc-dark-hover);
+  --pc-press: var(--pc-dark-press);
+  --pc-shade: var(--pc-dark-shade);
+  --pc-blend: color-dodge;
+  --pc-holo-filter: hue-rotate(0deg);
+  --pc-sheen: rgba(255, 255, 255, 0.16);
+}
+
+/* 1. ROOT CONTAINER */
+.pc-root {
+  position: relative;
+  width: 360px;
+  max-width: 100%;
+  touch-action: pan-y;
+  perspective: 1000px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  margin: 0 auto;
+}
+
+/* 2. BODY (3D TILTED FRAME) */
+.pc-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: calc(var(--pc-radius) + 12px);
+  padding: 12px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  will-change: transform;
+  background: var(--pc-frame);
+  box-shadow: var(--pc-frame-shadow);
+  transform: rotateX(var(--pc-rotate-x)) rotateY(var(--pc-rotate-y));
+  transform-style: preserve-3d;
+  transition: box-shadow 0.25s ease;
+  border: 1px solid var(--pc-frame-edge);
+}
+
+/* 3. TILE (PHOTO + HOLO CANVAS) */
+.pc-tile {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--pc-radius);
+  background: var(--pc-tile);
+  box-shadow: var(--pc-tile-shadow);
+}
+
+/* Common Layer Base */
+.pc-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Sheen Layer */
+.pc-sheen {
+  background: radial-gradient(farthest-corner circle at calc(var(--pc-light-x) - 10px) calc(var(--pc-light-y) - 10px), var(--pc-sheen) 0%, transparent 55%);
+  opacity: calc(var(--pc-holo) * var(--pc-active));
+  z-index: 2;
+  transition: opacity 0.15s ease;
+}
+
+/* Holo Foil Layer */
+.pc-holo {
+  z-index: 3;
+  mix-blend-mode: var(--pc-blend);
+  background-image: repeating-linear-gradient(0deg, hsl(2, 100%, 73%) 5%, hsl(53, 100%, 69%) 10%, hsl(93, 100%, 69%) 15%, hsl(176, 100%, 76%) 20%, hsl(228, 100%, 74%) 25%, hsl(260, 100%, 76%) 30%, hsl(2, 100%, 73%) 35%),
+                    repeating-linear-gradient(-45deg, #0e152e 0%, hsl(180, 10%, 60%) 3.8%, hsl(180, 29%, 66%) 4.5%, hsl(180, 10%, 60%) 5.2%, #0e152e 10%, #0e152e 12%),
+                    radial-gradient(farthest-corner circle at var(--pc-pointer-x) var(--pc-pointer-y), hsla(0, 0%, 0%, 0.1) 12%, hsla(0, 0%, 0%, 0.15) 20%, hsla(0, 0%, 0%, 0.25) 120%);
+  background-position: 0 var(--pc-band-y), var(--pc-band-x) var(--pc-band-y), center;
+  background-size: 500% 500%, 300% 300%, 200% 200%;
+  background-blend-mode: color, hard-light;
+  filter: brightness(calc(0.66 + 0.19 * var(--pc-active))) contrast(calc(1.33 + 0.17 * var(--pc-active))) saturate(calc(0.33 + 0.17 * var(--pc-active))) var(--pc-holo-filter);
+  opacity: calc(var(--pc-holo) * var(--pc-holo-gain) * (0.45 + 0.55 * var(--pc-active)));
+  pointer-events: none;
+}
+
+/* Glow Layer inside Holo */
+.pc-glow {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(45deg, hsl(176, 100%, 76%), hsl(228, 100%, 74%), hsl(260, 100%, 76%), hsl(2, 100%, 73%), hsl(53, 100%, 69%), hsl(93, 100%, 69%)),
+                    radial-gradient(circle at var(--pc-pointer-x) var(--pc-pointer-y), hsl(0, 0%, 70%) 0%, hsla(0, 0%, 30%, 0.2) 90%),
+                    var(--pc-grain);
+  background-size: 250% 250%, 100% 100%, 220px 220px;
+  background-position: var(--pc-pointer-x) var(--pc-pointer-y), center, 0 0;
+  background-blend-mode: color-dodge;
+  filter: brightness(calc(2 - var(--pc-reach))) contrast(calc(var(--pc-reach) + 2)) saturate(calc(0.5 + var(--pc-reach)));
+  mix-blend-mode: luminosity;
+  opacity: calc(var(--pc-active) * var(--pc-holo-detail));
+}
+
+/* Shift Layer inside Holo */
+.pc-shift {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, hsl(2, 100%, 73%) 5%, hsl(53, 100%, 69%) 10%, hsl(93, 100%, 69%) 15%, hsl(176, 100%, 76%) 20%, hsl(228, 100%, 74%) 25%, hsl(260, 100%, 76%) 30%, hsl(2, 100%, 73%) 35%),
+                    repeating-linear-gradient(-45deg, #0e152e 0%, hsl(180, 10%, 60%) 3.8%, hsl(180, 29%, 66%) 4.5%, hsl(180, 10%, 60%) 5.2%, #0e152e 10%, #0e152e 12%),
+                    radial-gradient(farthest-corner circle at var(--pc-pointer-x) var(--pc-pointer-y), hsla(0, 0%, 0%, 0.1) 12%, hsla(0, 0%, 0%, 0.15) 20%, hsla(0, 0%, 0%, 0.25) 120%);
+  background-position: 0 var(--pc-band-y), calc(var(--pc-band-x) * 0.4) calc(var(--pc-band-y) * 0.5), center;
+  background-size: 200% 300%, 700% 700%, 100% 100%;
+  background-blend-mode: color, hard-light;
+  mix-blend-mode: difference;
+  filter: brightness(0.8) contrast(1.5);
+  opacity: calc(var(--pc-active) * var(--pc-holo-detail));
+}
+
+/* Portrait Photo with Parallax */
+.pc-photo {
+  pointer-events: none;
+  position: absolute;
+  inset: calc(var(--pc-parallax) * -1);
+  width: calc(100% + var(--pc-parallax) * 2);
+  height: calc(100% + var(--pc-parallax) * 2);
+  object-fit: cover;
+  object-position: center center;
+  select: none;
+  user-select: none;
+  transform: translate3d(var(--pc-shift-x), var(--pc-shift-y), 0);
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Scrim Gradient behind text */
+.pc-scrim {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 12%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.28) 40%, rgba(0, 0, 0, 0) 65%);
+  z-index: 4;
+}
+
+/* Info Over Portrait */
+.pc-info {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  right: 20px;
+  color: #ffffff;
+  z-index: 5;
+}
+
+.pc-name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.pc-title {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #F07832;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Tile Rim Highlight */
+.pc-tile-rim {
+  box-shadow: inset 0 0 0 1px var(--pc-tile-edge), inset 0 1px 0 var(--pc-tile-highlight);
+  z-index: 6;
+}
+
+/* Glare Layer */
+.pc-glare {
+  background: radial-gradient(farthest-corner circle at var(--pc-light-x) var(--pc-light-y), rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.35) 20%, rgba(255, 255, 255, 0) 60%);
+  opacity: calc(var(--pc-glare) * var(--pc-active));
+  mix-blend-mode: overlay;
+  z-index: 7;
+}
+
+/* Ambient Shade */
+.pc-shade {
+  background: radial-gradient(farthest-corner circle at var(--pc-light-x) var(--pc-light-y), transparent 30%, var(--pc-shade) 100%);
+  opacity: calc(var(--pc-glare) * var(--pc-tilt));
+  z-index: 8;
+}
+
+/* Outer Frame Rim */
+.pc-rim {
+  box-shadow: inset 0 0 0 1px var(--pc-frame-edge), inset 0 1px 0 var(--pc-frame-highlight);
+  z-index: 9;
+}
+
+/* 4. FOOTER & USER INFO */
+.pc-footer {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 12px 6px;
+  z-index: 10;
+}
+
+.pc-avatar-wrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--pc-tile);
+  border: 1px solid var(--pc-tile-edge);
+}
+
+.pc-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.pc-meta {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pc-handle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--pc-ink);
+}
+
+.pc-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--pc-muted);
+}
+
+.pc-status-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--pc-status);
+  box-shadow: 0 0 8px var(--pc-status);
+}
+
+/* Social & Contact Actions */
+.pc-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 10px 8px;
+  border-top: 1px solid var(--pc-tile-edge);
+  margin-top: 4px;
+}
+
+.pc-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--pc-ink);
+  background: var(--pc-tile);
+  border: 1px solid var(--pc-tile-edge);
+  box-shadow: var(--pc-tile-shadow);
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.pc-social-btn:hover {
+  background: #F07832;
+  color: #ffffff !important;
+  border-color: #F07832;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(240, 120, 50, 0.4);
+}
+
+.pc-social-btn i {
+  font-size: 14px;
+}
+
+/* Bio & Skills Extra Drawer */
+.pc-bio-box {
+  padding: 10px 14px 4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--pc-muted);
+  text-align: center;
+}
+
+.pc-skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding: 4px 10px 8px;
+}
+
+.pc-skill-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(240, 120, 50, 0.1);
+  color: #F07832;
+  border: 1px solid rgba(240, 120, 50, 0.2);
+}
+
+/* 5. MODAL WRAPPER & POSITIONING */
+.sanvex-profilecard-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sanvex-profilecard-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sanvex-profilecard-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 6, 12, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+}
+
+.sanvex-profilecard-dialog {
+  position: relative;
+  z-index: 2;
+  transform: scale(0.9) translateY(16px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+}
+
+.sanvex-profilecard-modal.active .sanvex-profilecard-dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Floating Close Button in Upper Right */
+.sanvex-profilecard-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(20, 24, 32, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 50;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+.sanvex-profilecard-close:hover {
+  background: #F07832;
+  color: #ffffff;
+  border-color: #F07832;
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .pc-root {
+    width: 320px;
+  }
+  .sanvex-profilecard-close {
+    top: -12px;
+    right: -12px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
