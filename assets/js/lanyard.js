@@ -923,9 +923,12 @@ export function createLanyard(container, userProps = {}) {
     foilUniforms.foilFill.value.set(3, -1, 4).normalize().transformDirection(camera.matrixWorldInverse);
     foilUniforms.foilTop.value.set(0.5, 4.5, 8).normalize().transformDirection(camera.matrixWorldInverse);
 
+    const topOfSlot = (0.5 - fractionY) * viewHeight;
+    const strapDrop = viewHeight * (clamp(s.strapLength, 0.1, 0.8) * 0.28);
+    const liftFraction = s.verticalLift !== undefined ? s.verticalLift : 0.05;
+    const lift = viewHeight * liftFraction;
     const anchorX = (fractionX - 0.5) * viewWidth;
-    const anchorY = (0.5 - fractionY) * viewHeight + 0.15;
-    const strapDrop = viewHeight * (clamp(s.strapLength, 0.2, 0.8) * 0.28);
+    const anchorY = topOfSlot + strapDrop + lift;
     const hangTop = anchorY - strapDrop + (layout.hangY - layout.height / 2);
 
     sim.anchor.set(anchorX, anchorY, 0);
@@ -1319,6 +1322,7 @@ function autoInitLanyard() {
       size: 0.72,
       anchor: 'center',
       strapLength: 0.44,
+      verticalLift: 0.05,
       strapColor: '#121417',
       strapWidth: 0.65,
       metal: 'silver',

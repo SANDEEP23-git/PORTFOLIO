@@ -1041,3 +1041,19 @@
     font-size: 36px !important;
   }
 }
+
+/* Global Smooth Scroll Margins for Fixed Header */
+html {
+  scroll-behavior: smooth;
+}
+
+#projects,
+#work,
+#about-section,
+#skills,
+#achievements,
+#learning,
+#collaborators-section,
+#contact {
+  scroll-margin-top: 80px;
+}

@@ -336,7 +336,8 @@
                     </h3>
                     <div
                       class="banner-three-button d-flex align-items-center justify-content-center tw-gap-3 flex-wrap">
-                      <a class="tw-hover-btn bg-black text-white fw-bold tw-py-4 tw-px-10 d-inline-block hover-text-white text-uppercase tw-rounded-lg"
+                      <a id="heroViewProjectsBtn"
+                        class="tw-hover-btn bg-black text-white fw-bold tw-py-4 tw-px-10 d-inline-block hover-text-white text-uppercase tw-rounded-lg"
                         href="#projects">
                         view projects
                         <span class="tw-hover-btn-circle-dot bg-main-two-600"></span>
@@ -470,7 +471,7 @@
       <section class="about-three-area py-120 position-relative z-1" id="about-section" style="overflow: visible;">
         <!-- Full-section unconstrained 3D Lanyard canvas container (allows dragging across the entire page) -->
         <div id="lanyard-card-container"
-          style="position: absolute; left: 0; top: -120px; width: 100%; height: calc(100% + 240px); pointer-events: none; z-index: 15; overflow: visible;">
+          style="position: absolute; left: 0; top: -150px; width: 100%; height: calc(100% + 300px); pointer-events: none; z-index: 15; overflow: visible;">
         </div>
 
         <div class="container tw-container-1800-px">
@@ -2996,6 +2997,26 @@
           new PureCounter();
         }
       }, 350);
+
+      // Hero Section: "View Projects" Smooth Scroll Handler
+      const heroViewProjectsBtn = document.getElementById("heroViewProjectsBtn");
+      if (heroViewProjectsBtn) {
+        heroViewProjectsBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (typeof window.sanvexScrollTo === "function") {
+            window.sanvexScrollTo("#projects");
+          } else {
+            const projectsSection = document.getElementById("projects");
+            if (projectsSection) {
+              if (typeof ScrollSmoother !== "undefined" && ScrollSmoother.get && ScrollSmoother.get()) {
+                ScrollSmoother.get().scrollTo(projectsSection, true, "top 70px");
+              } else {
+                projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }
+          }
+        });
+      }
     });
   </script>
 </body>

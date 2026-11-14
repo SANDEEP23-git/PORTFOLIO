@@ -21,24 +21,8 @@
   "use strict";
 
   ////////////////////////////////////////////////////
-  // 01. Smooth Scroll Js
-  function smoothSctoll() {
-    $(".smooth a").on("click", function (event) {
-      var target = $(this.getAttribute("href"));
-      if (target.length) {
-        event.preventDefault();
-        $("html, body")
-          .stop()
-          .animate(
-            {
-              scrollTop: target.offset().top - 120,
-            },
-            1500,
-          );
-      }
-    });
-  }
-  smoothSctoll();
+  // 01. Smooth Scroll Js with GSAP ScrollSmoother & Fallback
+  let smoother = null;
   if ($("#smooth-wrapper").length && $("#smooth-content").length) {
     gsap.registerPlugin(
       ScrollTrigger,
@@ -49,14 +33,61 @@
     gsap.config({
       nullTargetWarn: false,
     });
-    let smoother = ScrollSmoother.create({
+    smoother = ScrollSmoother.create({
       smoothTouch: 0.2,
       smooth: 1.5,
       effects: true,
       normalizeScroll: false,
       ignoreMobileResize: true,
     });
+    window.sanvexSmoother = smoother;
   }
+
+  function scrollToTarget(targetSelector) {
+    const $target = $(targetSelector);
+    if (!$target.length) return;
+
+    // Check if ScrollSmoother instance is available
+    const activeSmoother = smoother || (typeof ScrollSmoother !== "undefined" && ScrollSmoother.get ? ScrollSmoother.get() : null);
+
+    if (activeSmoother && typeof activeSmoother.scrollTo === "function") {
+      try {
+        activeSmoother.scrollTo($target[0], true, "top 70px");
+      } catch (err) {
+        $target[0].scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      const targetTop = $target.offset().top - 70;
+      window.scrollTo({
+        top: targetTop,
+        behavior: "smooth"
+      });
+    }
+
+    // Close mobile offcanvas drawer if open
+    if ($(".tw-offcanvas-2-area").hasClass("opened")) {
+      $(".tw-offcanvas-2-area").removeClass("opened");
+      $(".body-overlay").removeClass("opened");
+    }
+  }
+
+  window.sanvexScrollTo = scrollToTarget;
+
+  // Universal smooth scroll handler for all internal anchor links (including #projects)
+  $(document).on("click", 'a[href^="#"]', function (event) {
+    const targetHash = $(this).attr("href");
+    if (!targetHash || targetHash === "#" || targetHash === "#!") return;
+
+    try {
+      const $target = $(targetHash);
+      if ($target.length) {
+        event.preventDefault();
+        scrollToTarget(targetHash);
+      }
+    } catch (e) {
+      // Not a valid selector, let default behavior happen
+    }
+  });
 
   ////////////////////////////////////////////////////
   // 02. Char SplitText Js
