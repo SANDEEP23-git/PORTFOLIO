@@ -1,0 +1,462 @@
+/* ==========================================================================
+   SANVEX PORTFOLIO — MY STORY / EDITORIAL TIMELINE SECTION
+   Pitch Black Background + React Bits <Hyperspeed /> 3D Glowing Light Trails
+   - Deep Black Background (#050505 / #000000) matching React Bits showcase
+   - High-contrast crisp white typography
+   - Lowered timeline position: "Let's go back in time" & giant Year in the vertical middle
+   - NO BOXES, NO PILLS: Pure Editorial Typography
+   - Dynamic Year transitions & Step Progress Indicator (⏱ 01 / 03)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. SECTION CONTAINER & BLACK HYPERSPEED CANVAS
+   -------------------------------------------------------------------------- */
+.my-story-area {
+  position: relative;
+  background-color: #050505 !important;
+  color: #FFFFFF !important;
+  overflow: hidden;
+  padding-top: 60px;
+  padding-bottom: 120px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 2;
+  min-height: 100vh;
+}
+
+body.dark .my-story-area,
+body.dark-mode .my-story-area,
+[data-theme="dark"] .my-story-area {
+  background-color: #050505 !important;
+  color: #FFFFFF !important;
+}
+
+/* React Bits <Hyperspeed /> Three.js 3D Light Trails Container */
+.story-hyperspeed-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 1; /* Full vibrant neon visibility on pitch black */
+}
+
+/* Very subtle corner ambient accents for depth */
+.story-ambient-glow-tl {
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 50, 47, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+  z-index: 0;
+}
+
+.story-ambient-glow-br {
+  position: absolute;
+  bottom: -140px;
+  right: -100px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253, 222, 160, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(70px);
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   02. TIGHT EDITORIAL GRID LAYOUT
+   -------------------------------------------------------------------------- */
+.story-container {
+  width: 100%;
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 28px;
+  padding-right: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.story-grid-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  column-gap: 60px;
+  align-items: stretch; /* Stretches left col to match full right timeline height */
+}
+
+/* --------------------------------------------------------------------------
+   03. LEFT COLUMN: STICKY DYNAMIC YEAR PANEL (Centered in Viewport Middle)
+   -------------------------------------------------------------------------- */
+.story-left-col {
+  position: relative;
+  height: 100%;
+  padding-top: calc(50vh - 160px); /* Starts comfortably down near the middle */
+}
+
+.story-sticky-panel {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(50vh - 80px); /* Locks "Let's go back in time" & giant Year in screen middle */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 10px;
+  transition: top 0.25s ease;
+}
+
+/* Minimalist Dot Label: • My story */
+.story-ref-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #9CA3AF;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+.story-ref-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #9CA3AF;
+  display: inline-block;
+}
+
+/* Title: Let's go back in time. */
+.story-ref-title {
+  font-family: var(--heading-font, "Phudu", sans-serif);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #FFFFFF !important;
+  letter-spacing: -0.4px;
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+/* Giant Year Typography */
+.story-ref-year-wrap {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  margin: 0 0 16px 0;
+  user-select: none;
+}
+
+.story-ref-giant-year {
+  font-family: var(--heading-font, "Phudu", sans-serif);
+  font-size: clamp(90px, 9.5vw, 130px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -3.5px;
+  color: #FFFFFF !important;
+  display: inline-block;
+  will-change: transform, opacity;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Active Date Range below Year */
+.story-ref-active-date {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #D1D5DB;
+  margin-bottom: 16px;
+  min-height: 16px;
+  transition: opacity 0.2s ease;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Progress Indicator Row: ⏱ 01 / 03 ─────────── ─────────── */
+.story-ref-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.story-ref-clock-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.story-ref-step-counter {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.story-ref-step-current {
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+.story-ref-step-sep {
+  opacity: 0.45;
+  font-weight: 400;
+  margin: 0 1px;
+}
+
+.story-ref-step-total {
+  opacity: 0.6;
+}
+
+/* Horizontal Progress Line Track & Fill */
+.story-ref-track {
+  flex: 1;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-ref-track-fill {
+  height: 100%;
+  width: 33.333%;
+  background-color: #FFFFFF;
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   04. RIGHT COLUMN: CENTER LINE & PURE EDITORIAL TEXT (Middle Synchronized)
+   -------------------------------------------------------------------------- */
+.story-right-col {
+  position: relative;
+  padding-left: 44px;
+  padding-top: calc(50vh - 160px);
+  padding-bottom: 25vh;
+}
+
+/* Minimalist Center Vertical Line */
+.story-center-line {
+  position: absolute;
+  left: 0;
+  top: calc(50vh - 160px);
+  bottom: 25vh;
+  width: 1.5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Individual Milestone Entry: PURE TEXT, NO BOX */
+.story-editorial-entry {
+  position: relative;
+  margin-bottom: 130px;
+  opacity: 0.28;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity;
+  cursor: pointer;
+}
+
+.story-editorial-entry:last-child {
+  margin-bottom: 0;
+}
+
+.story-editorial-entry.active {
+  opacity: 1;
+}
+
+/* Center Marker Dot (Glowing White Dot on Active Entry) */
+.story-center-marker {
+  position: absolute;
+  left: -44px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  z-index: 3;
+}
+
+.story-editorial-entry.active .story-center-marker {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.95), 0 0 28px rgba(255, 255, 255, 0.6);
+}
+
+/* Date Label */
+.story-entry-date {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+/* Title */
+.story-entry-title {
+  font-family: var(--heading-font, "Phudu", sans-serif);
+  font-size: clamp(22px, 2.3vw, 28px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFFFFF !important;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.3px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* Subtitle */
+.story-entry-inst {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #CBD5E1;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Bullet Points */
+.story-entry-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.story-entry-bullet {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 13.8px;
+  line-height: 1.62;
+  color: #E2E8F0;
+  position: relative;
+  padding-left: 14px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+.story-entry-bullet::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #9CA3AF;
+}
+
+/* --------------------------------------------------------------------------
+   05. MOBILE & TABLET RESPONSIVE (max-width: 991px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 991px) {
+  .my-story-area {
+    padding-top: 60px !important;
+    padding-bottom: 70px !important;
+    background-color: #050505 !important;
+  }
+
+  .story-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .story-grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .story-left-col {
+    padding-top: 20px !important;
+    height: auto !important;
+  }
+
+  .story-sticky-panel {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 75px;
+    z-index: 20;
+    background: rgba(8, 8, 10, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 16px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    width: 100%;
+  }
+
+  .story-ref-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .story-ref-giant-year {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+  }
+
+  .story-ref-year-wrap {
+    margin-bottom: 8px;
+  }
+
+  .story-ref-active-date {
+    margin-bottom: 8px;
+  }
+
+  .story-ref-progress-row {
+    max-width: 100%;
+  }
+
+  /* Right column on mobile */
+  .story-right-col {
+    padding-left: 28px;
+    padding-top: 24px;
+    padding-bottom: 30px;
+  }
+
+  .story-center-line {
+    top: 24px;
+    bottom: 30px;
+  }
+
+  .story-center-marker {
+    left: -28px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .story-editorial-entry {
+    margin-bottom: 46px;
+  }
+
+  .story-entry-title {
+    font-size: 20px;
+  }
+
+  .story-entry-inst {
+    font-size: 13.5px;
+  }
+
+  .story-entry-bullet {
+    font-size: 13.2px;
+  }
+}

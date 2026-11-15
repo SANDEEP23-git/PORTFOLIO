@@ -6,6 +6,7 @@
    ========================================================================== */
 
 @media screen and (max-width: 991px) {
+
   /* -------------------------------------------------------------------------
      01. GLOBAL SAFETY & VIEWPORT CONTAINMENT
      ------------------------------------------------------------------------- */
@@ -35,13 +36,24 @@
   }
 
   /* Prevent text blowouts */
-  h1, h2, h3, h4, h5, h6, p, a, span {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  span {
     word-break: break-word;
     overflow-wrap: break-word;
   }
 
   /* Image safety */
-  img, svg, video, iframe {
+  img,
+  svg,
+  video,
+  iframe {
     max-width: 100% !important;
     height: auto;
   }
@@ -342,26 +354,34 @@
   }
 
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px 10px !important;
   }
 
   .tech-card {
-    min-height: 105px !important;
-    padding: 14px 10px !important;
-    border-radius: 12px !important;
+    min-height: auto !important;
+    padding: 8px 15px !important;
+    border-radius: 9999px !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
   }
 
   .tech-icon {
-    width: 32px !important;
-    height: 32px !important;
-    margin-bottom: 8px !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    margin-bottom: 0 !important;
   }
 
   .tech-name {
     font-size: 0.82rem !important;
-    font-weight: 600 !important;
-    text-align: center !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
   }
 
   /* -------------------------------------------------------------------------
@@ -594,11 +614,11 @@
     text-overflow: ellipsis !important;
   }
 
-  .feature-three-left > div:nth-child(3) {
+  .feature-three-left>div:nth-child(3) {
     display: none !important;
   }
 
-  .feature-three-item > div:last-child span {
+  .feature-three-item>div:last-child span {
     font-size: 1.1rem !important;
     flex-shrink: 0 !important;
   }
@@ -714,7 +734,7 @@
     margin: 0 -6px !important;
   }
 
-  .brand-three-area .gx-2 > [class*="col-"] {
+  .brand-three-area .gx-2>[class*="col-"] {
     width: 50% !important;
     max-width: 50% !important;
     flex: 0 0 50% !important;
@@ -976,6 +996,7 @@
    EXTRA COMPACT PHONE ADJUSTMENTS (<= 375px: iPhone SE, Galaxy Fold, 320px)
    ------------------------------------------------------------------------- */
 @media screen and (max-width: 375px) {
+
   .container,
   .tw-container-1800-px {
     padding-left: 14px !important;
@@ -1001,17 +1022,16 @@
   }
 
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
+    gap: 6px 8px !important;
   }
 
   .tech-card {
-    padding: 10px 6px !important;
-    min-height: 92px !important;
+    padding: 6px 12px !important;
+    min-height: auto !important;
   }
 
   .tech-name {
-    font-size: 0.75rem !important;
+    font-size: 0.78rem !important;
   }
 
   .card-swap-slot {
@@ -1023,7 +1043,7 @@
     height: 120px !important;
   }
 
-  .brand-three-area .gx-2 > [class*="col-"] {
+  .brand-three-area .gx-2>[class*="col-"] {
     width: 100% !important;
     max-width: 100% !important;
     flex: 0 0 100% !important;

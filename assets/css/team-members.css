@@ -209,250 +209,346 @@ body.dark-mode .team-role {
   opacity: 1;
 }
 
-/* Modal Card Surface: Soft Ivory in Light Mode */
-.sanvex-team-modal-card {
-  position: relative;
-  background: rgba(255, 253, 250, 0.94);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-radius: 24px;
-  padding: 36px 32px 30px;
-  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.35),
-              0 12px 30px -8px rgba(240, 120, 50, 0.15),
-              0 0 0 1px rgba(240, 120, 50, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: #02090f;
+/* 2. REACT BITS <SpotlightCard /> PROFILE POPUP */
+:root {
+  --spotlight-card-surface: #0E0E14;
+  --spotlight-card-border: rgba(255, 255, 255, 0.08);
+  --spotlight-card-shadow: 0 35px 85px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(242, 140, 40, 0.2);
 }
 
-/* Dark Mode Modal Surface */
-[data-theme="dark"] .sanvex-team-modal-card,
-body.dark .sanvex-team-modal-card,
-body.dark-mode .sanvex-team-modal-card {
-  background: rgba(18, 21, 28, 0.94);
-  box-shadow: 0 35px 85px -15px rgba(0, 0, 0, 0.8),
-              0 14px 35px -8px rgba(240, 120, 50, 0.2),
-              0 0 0 1px rgba(240, 120, 50, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #f4f4f5;
-}
-
-/* Close Button */
-.sanvex-team-modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid rgba(2, 9, 15, 0.12);
-  background: rgba(255, 255, 255, 0.8);
-  color: #02090f;
+.sanvex-team-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sanvex-team-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Backdrop */
+.sanvex-team-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 8, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
-  transition: all 0.22s ease;
-  outline: none;
 }
 
-.sanvex-team-modal-close:hover {
-  background: #F07832;
-  color: #ffffff;
-  border-color: #F07832;
-  transform: rotate(90deg);
-}
-
-[data-theme="dark"] .sanvex-team-modal-close,
-body.dark .sanvex-team-modal-close,
-body.dark-mode .sanvex-team-modal-close {
-  background: rgba(255, 255, 255, 0.06);
-  color: #f4f4f5;
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-[data-theme="dark"] .sanvex-team-modal-close:hover,
-body.dark .sanvex-team-modal-close:hover,
-body.dark-mode .sanvex-team-modal-close:hover {
-  background: #F07832;
-  color: #02090f;
-  border-color: #F07832;
-}
-
-/* Modal Avatar */
-.sanvex-team-modal-avatar-wrap {
+/* Modal Dialog */
+.sanvex-team-modal-dialog {
   position: relative;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, #F07832, #ff9e58);
-  box-shadow: 0 0 25px rgba(240, 120, 50, 0.4);
+  z-index: 2;
+  width: 100%;
+  max-width: 390px;
+  transform: scale(0.92) translateY(12px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.35s ease;
 }
 
-.sanvex-team-modal-avatar {
+.sanvex-team-modal.active .sanvex-team-modal-dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Modal Card Surface: React Bits SpotlightCard */
+.sanvex-team-modal-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--spotlight-card-surface, #111111);
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+  border-radius: 28px;
+  padding: 28px 24px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+/* SpotlightCard Layers */
+.spotlight-card-light,
+.spotlight-card-noise,
+.spotlight-card-border,
+.spotlight-card-edge {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.spotlight-card-light {
+  z-index: -10;
+  opacity: 0;
+  will-change: background, opacity;
+  transition: opacity 0.2s ease;
+}
+
+.spotlight-card-noise {
+  z-index: -10;
+  opacity: 0.035;
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.spotlight-card-border {
+  z-index: 1;
+  padding: 1px;
+  background: var(--spotlight-card-border, rgba(255, 255, 255, 0.08));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+.spotlight-card-edge {
+  z-index: 1;
+  padding: 1px;
+  opacity: 0;
+  will-change: background, opacity;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+.sanvex-team-modal-card > *:not(.spotlight-card-light):not(.spotlight-card-noise):not(.spotlight-card-border):not(.spotlight-card-edge) {
+  position: relative;
+  z-index: 2;
+}
+
+/* 1. Top Row: Avatar & Actions (matching reference image) */
+.spotlight-card-avatar-wrap {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #18191E;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+.spotlight-card-avatar {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
-  background: #ffffff;
   display: block;
 }
 
-/* Modal Name & Role */
-.sanvex-team-modal-name {
-  font-size: 1.45rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  margin: 14px 0 4px;
-  color: #02090f;
-}
-
-[data-theme="dark"] .sanvex-team-modal-name,
-body.dark .sanvex-team-modal-name,
-body.dark-mode .sanvex-team-modal-name {
-  color: #ffffff;
-}
-
-.sanvex-team-modal-role-badge {
-  display: inline-flex;
+.spotlight-card-action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #D1D5DB;
+  display: flex;
   align-items: center;
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.78rem;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.spotlight-card-action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.06);
+}
+
+.spotlight-card-action-btn.close-btn:hover {
+  color: #F28C28;
+  border-color: #F28C28;
+}
+
+/* 2. Member Name & Role (Left Aligned) */
+.spotlight-card-meta {
+  text-align: left;
+}
+
+.spotlight-card-name {
+  font-family: var(--heading-font, "Phudu", sans-serif);
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: rgba(240, 120, 50, 0.12);
-  color: #F07832;
-  border: 1px solid rgba(240, 120, 50, 0.3);
+  color: #FFFFFF;
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
-/* Modal Bio */
-.sanvex-team-modal-bio {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #52525b;
-  margin: 0 auto;
-  max-width: 400px;
+.spotlight-card-role {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 0.94rem;
+  color: #9CA3AF;
+  margin: 0;
+  line-height: 1.3;
 }
 
-[data-theme="dark"] .sanvex-team-modal-bio,
-body.dark .sanvex-team-modal-bio,
-body.dark-mode .sanvex-team-modal-bio {
-  color: #d4d4d8;
-}
-
-/* Modal Skills / Contributions */
-.sanvex-team-modal-skills {
+/* 3. Skill Tags (Left Aligned) */
+.spotlight-card-skills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center;
-  margin-top: 14px;
+  justify-content: flex-start;
 }
 
-.sanvex-team-skill-pill {
-  font-size: 0.74rem;
+.spotlight-skill-tag {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(2, 9, 15, 0.06);
-  color: #18181b;
-  border: 1px solid rgba(2, 9, 15, 0.08);
+  padding: 5px 14px;
+  border-radius: 8px;
+  background: #25262B;
+  color: #F4F4F5;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-[data-theme="dark"] .sanvex-team-skill-pill,
-body.dark .sanvex-team-skill-pill,
-body.dark-mode .sanvex-team-skill-pill {
-  background: rgba(255, 255, 255, 0.06);
-  color: #e4e4e7;
-  border-color: rgba(255, 255, 255, 0.1);
+/* 4. Three-Column Stats Grid (Instagram, GitHub, LinkedIn in place of Rating, Earned, Rate) */
+.spotlight-card-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  text-align: center;
 }
 
-/* Social Buttons */
-.sanvex-team-modal-footer {
-  border-top-color: rgba(2, 9, 15, 0.08) !important;
-}
-
-[data-theme="dark"] .sanvex-team-modal-footer,
-body.dark .sanvex-team-modal-footer,
-body.dark-mode .sanvex-team-modal-footer {
-  border-top-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-.sanvex-team-modal-links {
+.spotlight-stat-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  text-decoration: none !important;
+  padding: 8px 4px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  color: inherit;
 }
 
-.sanvex-team-social-btn {
+.spotlight-stat-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.spotlight-stat-value {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+  justify-content: center;
+  gap: 5px;
+  font-family: var(--heading-font, "Phudu", sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.spotlight-stat-value i {
+  font-size: 1.05rem;
+  color: #F28C28;
+}
+
+.spotlight-stat-label {
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 0.76rem;
+  color: #71717A;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.spotlight-stat-item:hover .spotlight-stat-label {
+  color: #A1A1AA;
+}
+
+/* 5. Bottom Action Row: "Get in touch" (Portfolio link) + Bookmark Button */
+.spotlight-card-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 0 24px;
   border-radius: 999px;
-  font-size: 0.85rem;
+  background: #22242B;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF !important;
+  font-family: var(--body-font, "Instrument Sans", sans-serif);
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  background: #ffffff;
-  color: #02090f;
-  border: 1px solid rgba(2, 9, 15, 0.14);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
-.sanvex-team-social-btn i {
-  font-size: 1.15rem;
-  transition: transform 0.25s ease;
-}
-
-.sanvex-team-social-btn:hover {
-  background: #F07832;
-  color: #ffffff;
-  border-color: #F07832;
+.spotlight-card-cta-btn:hover {
+  background: #FFFFFF;
+  color: #000000 !important;
+  border-color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(240, 120, 50, 0.35);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
 }
 
-.sanvex-team-social-btn:hover i {
-  transform: scale(1.15);
+.spotlight-card-bookmark-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #22242B;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] .sanvex-team-social-btn,
-body.dark .sanvex-team-social-btn,
-body.dark-mode .sanvex-team-social-btn {
-  background: rgba(255, 255, 255, 0.05);
-  color: #f4f4f5;
-  border-color: rgba(255, 255, 255, 0.12);
+.spotlight-card-bookmark-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #F28C28;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
-[data-theme="dark"] .sanvex-team-social-btn:hover,
-body.dark .sanvex-team-social-btn:hover,
-body.dark-mode .sanvex-team-social-btn:hover {
-  background: #F07832;
-  color: #02090f;
-  border-color: #F07832;
+.spotlight-card-bookmark-btn.bookmarked {
+  background: rgba(242, 140, 40, 0.2);
+  color: #F28C28;
+  border-color: #F28C28;
 }
 
 /* Mobile Adjustments */
 @media (max-width: 575px) {
+  .sanvex-team-modal-dialog {
+    max-width: 340px;
+  }
   .sanvex-team-modal-card {
-    padding: 28px 20px 24px;
-    border-radius: 20px;
+    padding: 24px 20px 20px;
+    border-radius: 22px;
   }
-  .sanvex-team-modal-avatar-wrap {
-    width: 80px;
-    height: 80px;
+  .spotlight-card-avatar-wrap {
+    width: 52px;
+    height: 52px;
   }
-  .sanvex-team-modal-name {
-    font-size: 1.25rem;
+  .spotlight-card-name {
+    font-size: 1.2rem;
   }
-  .sanvex-team-social-btn {
-    padding: 8px 14px;
-    font-size: 0.8rem;
+  .spotlight-card-cta-btn {
+    height: 46px;
+    font-size: 0.88rem;
+  }
+  .spotlight-card-bookmark-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 17px;
   }
 }

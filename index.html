@@ -34,6 +34,10 @@
   <link rel="stylesheet" href="assets/css/card-swap.css" />
   <!-- Team & Collaborators Profiles css -->
   <link rel="stylesheet" href="assets/css/team-members.css" />
+  <!-- 3D Planetary Orbit Collaborators css -->
+  <link rel="stylesheet" href="assets/css/orbit-collaborators.css" />
+  <!-- My Story Timeline css -->
+  <link rel="stylesheet" href="assets/css/my-story.css" />
   <!-- Dedicated Mobile Responsive Engine (max-width: 991px only) -->
   <link rel="stylesheet" href="assets/css/mobile-responsive.css" />
 </head>
@@ -1388,8 +1392,124 @@
 
         </div>
       </section>
-      <div class="feature-three-area py-120 position-relative z-1" id="achievements">
-        <div class="container tw-container-1800-px">
+
+      <!-- ==================== MY STORY SECTION START ==================== -->
+      <section class="my-story-area position-relative" id="story">
+        <!-- React Bits <Hyperspeed /> Three.js 3D Light Trails Canvas Container -->
+        <div id="hyperspeed-container" class="story-hyperspeed-container pointer-events-none" aria-hidden="true"></div>
+
+        <!-- Ambient subtle corner glows -->
+        <div class="story-ambient-glow-tl" aria-hidden="true"></div>
+        <div class="story-ambient-glow-br" aria-hidden="true"></div>
+
+        <div class="story-container">
+          <div class="story-grid-layout">
+
+            <!-- Left Column: Sticky Dynamic Year Panel (Centered in Viewport Middle) -->
+            <div class="story-left-col">
+              <div class="story-sticky-panel">
+
+                <!-- Minimalist Dot Label -->
+                <div class="story-ref-label">
+                  <span class="story-ref-dot"></span>
+                  <span>My story</span>
+                </div>
+
+                <!-- Section Heading -->
+                <h2 class="story-ref-title">
+                  Let's go back in time.
+                </h2>
+
+                <!-- Giant Year Typography (GSAP Dynamic Year) -->
+                <div class="story-ref-year-wrap">
+                  <span class="story-ref-giant-year" id="storyCurrentYear">2024</span>
+                </div>
+
+                <!-- Active Date Range below Year -->
+                <div class="story-ref-active-date" id="storyActiveDate">
+                  2024 — PRESENT
+                </div>
+
+                <!-- Progress Indicator Row: ⏱ 01 / 03 ─────────── ─────────── -->
+                <div class="story-ref-progress-row">
+                  <span class="story-ref-clock-icon" aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </span>
+                  <span class="story-ref-step-counter">
+                    <span class="story-ref-step-current" id="storyStepCurrent">01</span>
+                    <span class="story-ref-step-sep">/</span>
+                    <span class="story-ref-step-total" id="storyStepTotal">03</span>
+                  </span>
+                  <div class="story-ref-track">
+                    <div class="story-ref-track-fill" id="storyProgressBarFill"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right Column: Vertical Timeline Stream (Pure Text, NO boxes!) -->
+            <div class="story-right-col">
+              <!-- Center Vertical Line -->
+              <div class="story-center-line" aria-hidden="true"></div>
+
+              <div class="story-timeline-entries">
+
+                <!-- Milestone 01: B.Tech Computer Science & Engineering -->
+                <div class="story-editorial-entry active" data-year="2024" data-date="2024 — PRESENT" id="entry-btech">
+                  <div class="story-center-marker" aria-hidden="true"></div>
+                  <div class="story-entry-date">2024 — PRESENT</div>
+                  <h3 class="story-entry-title">B.Tech, Computer Science &amp; Engineering</h3>
+                  <div class="story-entry-inst">Nalanda Institute of Technology · Bhubaneswar</div>
+                  <div class="story-entry-bullets">
+                    <div class="story-entry-bullet">Started my engineering journey with a focus on programming, computer science, and software development.</div>
+                    <div class="story-entry-bullet">Exploring Artificial Intelligence, Machine Learning, Data Science, and Full-Stack Development through practical projects.</div>
+                  </div>
+                </div>
+
+                <!-- Milestone 02: Higher Secondary (Class XII), Science -->
+                <div class="story-editorial-entry" data-year="2023" data-date="2022 — 2024" id="entry-12th">
+                  <div class="story-center-marker" aria-hidden="true"></div>
+                  <div class="story-entry-date">2022 — 2024</div>
+                  <h3 class="story-entry-title">Higher Secondary (Class XII), Science</h3>
+                  <div class="story-entry-inst">Sri Sri Bayababa Higher Secondary School · Kendrapara, Odisha</div>
+                  <div class="story-entry-bullets">
+                    <div class="story-entry-bullet">Completed higher secondary education in Science stream with distinction (79% marks).</div>
+                    <div class="story-entry-bullet">Built strong analytical foundations in Mathematics, Physics, Chemistry, and problem-solving.</div>
+                  </div>
+                </div>
+
+                <!-- Milestone 03: Secondary Examination (Class X) -->
+                <div class="story-editorial-entry" data-year="2022" data-date="2021 — 2022" id="entry-10th">
+                  <div class="story-center-marker" aria-hidden="true"></div>
+                  <div class="story-entry-date">2021 — 2022</div>
+                  <h3 class="story-entry-title">Secondary Examination (Class X)</h3>
+                  <div class="story-entry-inst">Bijoynagar Nodal High School · Kendrapara, Odisha</div>
+                  <div class="story-entry-bullets">
+                    <div class="story-entry-bullet">Graduated secondary school with academic distinction (87% marks).</div>
+                    <div class="story-entry-bullet">Developed an early passion for technology, mathematics, and logical reasoning.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ==================== MY STORY SECTION END ==================== -->
+
+      <div class="feature-three-area py-120 position-relative z-1 overflow-hidden" id="achievements" style="position: relative; overflow: hidden;">
+        <!-- SideRays (React Bits) Volumetric Light Canvas Container -->
+        <div id="side-rays-container" class="pointer-events-none position-absolute start-0 top-0 w-100 h-100 overflow-hidden"
+          style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden;">
+          <canvas id="side-rays-canvas" class="w-100 h-100 d-block" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: block;" aria-hidden="true"></canvas>
+        </div>
+
+        <div class="container tw-container-1800-px position-relative" style="position: relative; z-index: 1;">
           <div class="row">
             <div class="col-xl-12">
               <div class="feature-three-wrapper hover__widget">
@@ -2091,135 +2211,48 @@
           </div>
         </div>
       </section>
-      <section class="brand-three-area brand-two-area pb-120 @@brandipClass" id="collaborators-section">
+      <!-- ==================== COLLABORATORS & FRIENDS SECTION (3D ORBIT) ==================== -->
+      <section class="position-relative" id="collaborators-section">
         <div class="container tw-container-1800-px">
-          <div class="row">
-            <div class="col-xl-12">
-              <div class="text-center tw-mb-15">
-                <h2 class="brand-three-title tw-text-xl tw-char-animation">
-                  BUILT WITH GREAT PEOPLE.
-                </h2>
-                <p class="tw-text-base text-neutral-400 tw-mt-4 max-w-600-px mx-auto" style="line-height: 1.6;">
-                  A little appreciation for the people who make the journey better.
-                </p>
-              </div>
+          <!-- Section Header -->
+          <div class="orbit-header text-center" data-aos="fade-up" data-aos-duration="1000">
+            <div class="orbit-badge-pill" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+              <span class="orbit-badge-dot"></span>
+              <span>Collaborators &amp; Friends</span>
+            </div>
+            <h2 class="orbit-title tw-text-xl tw-char-animation">
+              BUILT WITH GREAT PEOPLE.
+            </h2>
+            <p class="orbit-subtitle tw-text-base mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">
+              Great things are never built alone. Meet the fellow builders, creative minds, and engineers in my circle. Click any collaborator to view their profile.
+            </p>
+          </div>
+
+          <!-- 3D Elliptical Orbit Stage (Clean Center, Orbiting Teammates) -->
+          <div class="orbit-stage-wrapper" data-aos="fade-up" data-aos-duration="1100" data-aos-delay="200">
+            <div class="orbit-stage" id="orbitStage">
+              <!-- SVG Elliptical Orbit Track Guideline -->
+              <svg class="orbit-track-svg" id="orbitTrackSvg" viewBox="0 0 1000 380" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="orbitTrackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(242, 140, 40, 0.2)" />
+                    <stop offset="50%" stop-color="rgba(255, 255, 255, 0.35)" />
+                    <stop offset="100%" stop-color="rgba(242, 140, 40, 0.2)" />
+                  </linearGradient>
+                </defs>
+                <!-- Soft Glow Track -->
+                <ellipse cx="500" cy="145" rx="420" ry="70" fill="none" stroke="rgba(242, 140, 40, 0.08)" stroke-width="4" />
+                <!-- Precision Dashed Orbit Line -->
+                <ellipse cx="500" cy="145" rx="420" ry="70" fill="none" stroke="url(#orbitTrackGrad)" stroke-width="1.2" stroke-dasharray="6 8" />
+              </svg>
+
+              <!-- Avatars dynamically generated and positioned in 3D orbit by orbit-collaborators.js -->
             </div>
           </div>
-          <div class="row gx-2">
-            <!-- 01. Member 0 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" role="button"
-                tabindex="0" aria-label="View profile of Aarav Sharma">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-01.svg" alt="Aarav Sharma" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Aarav Sharma</h4>
-                <p class="team-role text-truncate w-100 text-center">Full-Stack Developer</p>
-              </div>
-            </div>
-            <!-- 02. Member 1 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" role="button"
-                tabindex="0" aria-label="View profile of Priya Nair">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-02.svg" alt="Priya Nair" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Priya Nair</h4>
-                <p class="team-role text-truncate w-100 text-center">UI/UX Designer</p>
-              </div>
-            </div>
-            <!-- Spacer Column (Preserves Exact Staggered Layout on Desktop) -->
-            <div class="col-xl-2 col-lg-6 col-md-6 d-none d-xl-block"></div>
-            <!-- 03. Member 2 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" role="button"
-                tabindex="0" aria-label="View profile of Rohan Verma">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-03.svg" alt="Rohan Verma" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Rohan Verma</h4>
-                <p class="team-role text-truncate w-100 text-center">Data Scientist &amp; ML</p>
-              </div>
-            </div>
-            <!-- Spacer Column (Preserves Exact Staggered Layout on Desktop) -->
-            <div class="col-xl-2 col-lg-6 col-md-6 d-none d-xl-block"></div>
-            <!-- 04. Member 3 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" role="button"
-                tabindex="0" aria-label="View profile of Ananya Roy">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-04.svg" alt="Ananya Roy" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Ananya Roy</h4>
-                <p class="team-role text-truncate w-100 text-center">Frontend Engineer</p>
-              </div>
-            </div>
-          </div>
-          <div class="row gx-2">
-            <!-- Spacer Column (Preserves Exact Staggered Layout on Desktop) -->
-            <div class="col-xl-2 col-lg-6 col-md-6 d-none d-xl-block"></div>
-            <!-- 05. Member 4 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" role="button"
-                tabindex="0" aria-label="View profile of Karan Patel">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-05.svg" alt="Karan Patel" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Karan Patel</h4>
-                <p class="team-role text-truncate w-100 text-center">Backend Architect</p>
-              </div>
-            </div>
-            <!-- 06. Member 5 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" role="button"
-                tabindex="0" aria-label="View profile of Sneha Mukherjee">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-06.svg" alt="Sneha Mukherjee" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Sneha Mukherjee</h4>
-                <p class="team-role text-truncate w-100 text-center">Cloud &amp; DevOps</p>
-              </div>
-            </div>
-            <!-- Spacer Column (Preserves Exact Staggered Layout on Desktop) -->
-            <div class="col-xl-2 col-lg-6 col-md-6 d-none d-xl-block"></div>
-            <!-- 07. Member 6 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" role="button"
-                tabindex="0" aria-label="View profile of Vikram Das">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-07.svg" alt="Vikram Das" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Vikram Das</h4>
-                <p class="team-role text-truncate w-100 text-center">Mobile Developer</p>
-              </div>
-            </div>
-            <!-- 08. Member 7 -->
-            <div class="col-xl-2 col-lg-6 col-md-6 col-6">
-              <div class="brand-item brand-three-item position-relative z-1 tw-mb-1 sanvex-team-card"
-                data-member-index="7" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" role="button"
-                tabindex="0" aria-label="View profile of Tanvi Sen">
-                <div class="team-photo-wrap">
-                  <img class="team-photo" src="assets/images/team/person-08.svg" alt="Tanvi Sen" />
-                  <span class="team-photo-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span>
-                </div>
-                <h4 class="team-name text-truncate w-100 text-center">Tanvi Sen</h4>
-                <p class="team-role text-truncate w-100 text-center">Creative Technologist</p>
-              </div>
-            </div>
+
+          <!-- Bottom Member Name Navigation Pills (Matching Reference Image) -->
+          <div class="orbit-pills-container" id="orbitPillsRow" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <!-- Pills dynamically rendered and synced with orbit by orbit-collaborators.js -->
           </div>
         </div>
       </section>
@@ -2579,7 +2612,7 @@
           cards.forEach(function (card) {
             const cat = card.getAttribute("data-category");
             if (filter === "all" || cat === filter) {
-              card.style.display = "flex";
+              card.style.display = "inline-flex";
               setTimeout(function () {
                 card.style.opacity = "1";
                 card.style.transform = "translateY(0) scale(1)";
@@ -2741,56 +2774,81 @@
     </div>
   </div>
 
-  <!-- ==================== SANVEX TEAM / COLLABORATOR PROFILE POPUP MODAL ==================== -->
+  <!-- ==================== SANVEX TEAM / COLLABORATOR PROFILE POPUP MODAL (REACT BITS SPOTLIGHTCARD) ==================== -->
   <div id="sanvexTeamModal" class="sanvex-team-modal" aria-hidden="true" role="dialog" aria-modal="true"
     aria-labelledby="teamModalName">
     <div class="sanvex-team-modal-backdrop" id="sanvexTeamModalBackdrop"></div>
     <div class="sanvex-team-modal-dialog">
-      <div class="sanvex-team-modal-card">
-        <!-- Close Button -->
-        <button type="button" class="sanvex-team-modal-close" id="sanvexTeamModalCloseBtn" aria-label="Close Profile">
-          <i class="ph ph-x"></i>
-        </button>
+      <div class="sanvex-team-modal-card spotlight-card-layout" id="sanvexSpotlightCard">
+        <!-- SpotlightCard Layers -->
+        <span class="spotlight-card-light" id="spotlightLight" aria-hidden="true"></span>
+        <span class="spotlight-card-noise" id="spotlightNoise" aria-hidden="true"></span>
+        <span class="spotlight-card-border" aria-hidden="true"></span>
+        <span class="spotlight-card-edge" id="spotlightEdge" aria-hidden="true"></span>
 
-        <!-- Top Header with Avatar & Details -->
-        <div class="sanvex-team-modal-header text-center">
-          <div class="sanvex-team-modal-avatar-wrap mx-auto">
-            <img id="teamModalPhoto" class="sanvex-team-modal-avatar" src="assets/images/team/person-01.svg"
+        <!-- Top Row: Avatar on Left, Share & Close Action on Right -->
+        <div class="spotlight-card-top-row d-flex justify-content-between align-items-start">
+          <div class="spotlight-card-avatar-wrap">
+            <img id="teamModalPhoto" class="spotlight-card-avatar" src="assets/images/team/person-01.svg"
               alt="Profile Photo" />
           </div>
-          <h3 id="teamModalName" class="sanvex-team-modal-name mt-3 mb-1">Aarav Sharma</h3>
-          <div class="sanvex-team-modal-role-badge-wrap">
-            <span id="teamModalRole" class="sanvex-team-modal-role-badge">Full-Stack Developer</span>
+          <div class="spotlight-card-top-actions d-flex align-items-center gap-2">
+            <button type="button" class="spotlight-card-action-btn" id="teamModalShareBtn" aria-label="Share Profile" title="Share Profile">
+              <i class="ph ph-export"></i>
+            </button>
+            <button type="button" class="spotlight-card-action-btn close-btn" id="sanvexTeamModalCloseBtn" aria-label="Close Profile" title="Close">
+              <i class="ph ph-x"></i>
+            </button>
           </div>
         </div>
 
-        <!-- Body: Short Introduction & Skills -->
-        <div class="sanvex-team-modal-body text-center mt-3">
-          <p id="teamModalBio" class="sanvex-team-modal-bio">
-            Passionate engineer crafting scalable web applications, REST APIs, and responsive architectures.
-          </p>
-          <div id="teamModalSkills" class="sanvex-team-modal-skills"></div>
+        <!-- Name & Role (Left Aligned matching reference image) -->
+        <div class="spotlight-card-meta mt-3">
+          <h3 id="teamModalName" class="spotlight-card-name">Ethan Harrison</h3>
+          <p id="teamModalRole" class="spotlight-card-role">Product designer</p>
         </div>
 
-        <!-- Footer: Social Links -->
-        <div class="sanvex-team-modal-footer mt-4 pt-3 border-top">
-          <div class="sanvex-team-modal-links d-flex justify-content-center align-items-center gap-2">
-            <a id="teamModalPortfolio" class="sanvex-team-social-btn portfolio-btn" href="#" target="_blank"
-              rel="noopener noreferrer" title="Portfolio Website">
-              <i class="ph ph-globe"></i>
-              <span>Portfolio</span>
-            </a>
-            <a id="teamModalGithub" class="sanvex-team-social-btn github-btn" href="#" target="_blank"
-              rel="noopener noreferrer" title="GitHub Profile">
-              <i class="ph ph-github-logo"></i>
-              <span>GitHub</span>
-            </a>
-            <a id="teamModalInstagram" class="sanvex-team-social-btn instagram-btn" href="#" target="_blank"
-              rel="noopener noreferrer" title="Instagram Profile">
-              <i class="ph ph-instagram-logo"></i>
-              <span>Instagram</span>
-            </a>
-          </div>
+        <!-- Skills Pills (Left Aligned) -->
+        <div id="teamModalSkills" class="spotlight-card-skills d-flex flex-wrap gap-2 mt-3"></div>
+
+        <!-- 3-Column Stats Row: Instagram (Rating pos), GitHub (Earned pos), LinkedIn (Rate pos) -->
+        <div class="spotlight-card-stats-grid mt-4">
+          <!-- Position 1: Instagram (Rating pos) -->
+          <a id="teamModalInstagram" class="spotlight-stat-item" href="#" target="_blank" rel="noopener noreferrer" title="Instagram Profile">
+            <div class="spotlight-stat-value">
+              <i class="ph-bold ph-instagram-logo"></i>
+              <span>★ 4.9</span>
+            </div>
+            <div class="spotlight-stat-label">Instagram</div>
+          </a>
+
+          <!-- Position 2: GitHub (Earned pos) -->
+          <a id="teamModalGithub" class="spotlight-stat-item" href="#" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
+            <div class="spotlight-stat-value">
+              <i class="ph-bold ph-github-logo"></i>
+              <span>Repos</span>
+            </div>
+            <div class="spotlight-stat-label">GitHub</div>
+          </a>
+
+          <!-- Position 3: LinkedIn (Rate pos) -->
+          <a id="teamModalLinkedin" class="spotlight-stat-item" href="#" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+            <div class="spotlight-stat-value">
+              <i class="ph-bold ph-linkedin-logo"></i>
+              <span>Connect</span>
+            </div>
+            <div class="spotlight-stat-label">LinkedIn</div>
+          </a>
+        </div>
+
+        <!-- Bottom Action Buttons: "Get in touch" (Portfolio Link) + Bookmark Button -->
+        <div class="spotlight-card-bottom-actions d-flex align-items-center gap-2 mt-4">
+          <a id="teamModalPortfolio" class="spotlight-card-cta-btn flex-grow-1 text-center text-decoration-none" href="#" target="_blank" rel="noopener noreferrer" title="View Portfolio Website">
+            <span>Get in touch</span>
+          </a>
+          <button type="button" class="spotlight-card-bookmark-btn" id="teamModalBookmarkBtn" aria-label="Bookmark Profile" title="Bookmark">
+            <i class="ph ph-bookmark-simple"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -2808,11 +2866,24 @@
   <!-- Team Members & Collaborators Profiles Controller -->
   <script src="assets/js/team-members.js"></script>
 
+  <!-- 3D Planetary Orbit Collaborators Controller -->
+  <script src="assets/js/orbit-collaborators.js"></script>
+
   <!-- React Bits Lanyard 3D Physics Component -->
   <script type="module" src="assets/js/lanyard.js"></script>
 
+  <!-- React Bits SideRays Component (Achievements Section) -->
+  <script src="assets/js/side-rays.js"></script>
+
   <!-- My Learning Universe Tab Switcher & Video Modal Controller -->
   <script src="assets/js/learning-data.js"></script>
+
+  <!-- SANVEX My Story Data & ScrollTrigger Controller -->
+  <script src="assets/js/story-data.js"></script>
+  <script src="assets/js/my-story.js"></script>
+
+  <!-- React Bits Hyperspeed 3D Light Trails (My Story Background) -->
+  <script type="module" src="assets/js/hyperspeed.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // 1. Filter & Quick-Jump Tabs for All 10 Horizontal Resources
